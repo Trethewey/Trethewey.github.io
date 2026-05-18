@@ -109,22 +109,25 @@
     @media (min-width: 600px) {
       .card.span-2 {
         grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: 45% 55%;
+        display: flex;
+        flex-direction: row;
         align-items: stretch;
       }
-      .card.span-2 .card-image {
-        aspect-ratio: auto;
-        height: 100%;
-        min-height: 180px;
-        max-height: 240px;
+      .card.span-2 > .card-image {
+        width: 260px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        object-fit: contain;
         border-bottom: none;
         border-right: 1px solid var(--card-border);
       }
-      .card.span-2 .card-body {
+      .card.span-2 > .card-body {
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding: 1.25rem 1.5rem;
       }
     }
     .card-image {
