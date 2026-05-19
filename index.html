@@ -238,18 +238,26 @@
   <div class="pub-row">
     <div class="pub-year">2019</div>
     <div class="pub-title">
-      Circulating tumour DNA analysis to detect clonal evolution in TP53 mutated CLL treated with sequential precision medicines
+      <a href="https://scholar.google.com/scholar?q=%22Circulating+tumour+DNA+analysis+to+detect+clonal+evolution+in+TP53+mutated+CLL+treated+with+sequential+precision+medicines%22">Circulating tumour DNA analysis to detect clonal evolution in TP53 mutated CLL treated with sequential precision medicines</a>
       <span class="pub-journal">British Journal of Haematology · abstract</span>
     </div>
   </div>
   <div class="pub-row">
     <div class="pub-year">2019</div>
     <div class="pub-title">
-      Studying the molecular mechanisms of resistance to the irreversible, covalent BTK inhibitor, Tirabrutinib
+      <a href="https://scholar.google.com/scholar?q=%22Studying+the+molecular+mechanisms+of+resistance+to+the+irreversible%2C+covalent+BTK+inhibitor%2C+Tirabrutinib%22">Studying the molecular mechanisms of resistance to the irreversible, covalent BTK inhibitor, Tirabrutinib</a>
       <span class="pub-journal">British Journal of Haematology · abstract</span>
     </div>
   </div>
 
-  <footer>christrethewey.dev</footer>
+  <footer>christrethewey.dev · last updated <span id="last-updated"></span></footer>
+  <script>
+    (function () {
+      var d = new Date(document.lastModified);
+      var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      document.getElementById("last-updated").textContent =
+        d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+    })();
+  </script>
 </body>
 </html>
