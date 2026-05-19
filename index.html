@@ -77,7 +77,7 @@
     }
     .activity {
       width: 100%;
-      max-width: 320px;
+      max-width: 360px;
       justify-self: end;
     }
     .activity-label {
@@ -88,9 +88,19 @@
       margin: 0 0 0.4rem;
       text-align: right;
     }
-    .activity img {
+    .activity-window {
       width: 100%;
-      height: auto;
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 4px;
+    }
+    .activity-window img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: auto;
       display: block;
       filter: invert(1) hue-rotate(180deg);
     }
@@ -164,8 +174,10 @@
       </p>
     </div>
     <a class="activity" href="https://github.com/Trethewey" title="GitHub activity">
-      <div class="activity-label">// commit activity</div>
-      <img src="https://ghchart.rshah.org/00d4ff/Trethewey" alt="GitHub contribution heatmap" />
+      <div class="activity-label">// commit activity · last ~4 months</div>
+      <div class="activity-window">
+        <img src="https://ghchart.rshah.org/00d4ff/Trethewey" alt="GitHub contribution heatmap" />
+      </div>
     </a>
   </header>
 
