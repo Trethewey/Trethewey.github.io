@@ -68,6 +68,30 @@
       border-bottom: 1px solid var(--border);
       padding-bottom: 1.5rem;
       margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 720px) {
+      header { grid-template-columns: 1fr auto; align-items: start; }
+    }
+    .activity {
+      width: 100%;
+      max-width: 320px;
+      justify-self: end;
+    }
+    .activity-label {
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin: 0 0 0.4rem;
+      text-align: right;
+    }
+    .activity img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
     h1 { font-size: 1.4rem; margin: 0 0 0.25rem; font-weight: 700; }
     h1 .blink { color: var(--green); animation: blink 1s steps(2) infinite; }
@@ -127,15 +151,21 @@
 </head>
 <body>
   <header>
-    <h1><span class="prompt"></span>whoami<span class="blink">_</span></h1>
-    <p class="tagline">Chris Trethewey · Clinical researcher (haematology + oncology, UK)</p>
-    <p class="meta-line">
-      <a href="mailto:chris.s.trethewey@proton.me" rel="me">email</a> ·
-      <a href="https://github.com/Trethewey" rel="me">github</a> ·
-      <a href="https://www.linkedin.com/in/christophertrethewey/" rel="me">linkedin</a> ·
-      <a href="https://orcid.org/0000-0001-9128-3533" rel="me">orcid</a> ·
-      <a href="https://www.researchgate.net/profile/Christopher-Simon-Trethewey" rel="me">researchgate</a>
-    </p>
+    <div>
+      <h1><span class="prompt"></span>whoami<span class="blink">_</span></h1>
+      <p class="tagline">Chris Trethewey · Clinical researcher (haematology + oncology, UK)</p>
+      <p class="meta-line">
+        <a href="mailto:chris.s.trethewey@proton.me" rel="me">email</a> ·
+        <a href="https://github.com/Trethewey" rel="me">github</a> ·
+        <a href="https://www.linkedin.com/in/christophertrethewey/" rel="me">linkedin</a> ·
+        <a href="https://orcid.org/0000-0001-9128-3533" rel="me">orcid</a> ·
+        <a href="https://www.researchgate.net/profile/Christopher-Simon-Trethewey" rel="me">researchgate</a>
+      </p>
+    </div>
+    <a class="activity" href="https://github.com/Trethewey" title="GitHub activity">
+      <div class="activity-label">// commit activity</div>
+      <img src="https://ghchart.rshah.org/00d4ff/Trethewey" alt="GitHub contribution heatmap" />
+    </a>
   </header>
 
   <section>
