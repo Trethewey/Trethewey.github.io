@@ -3340,6 +3340,11 @@ async function showBuildStamp() {
       const when = new Date(s.builtAt);
       const built = Number.isNaN(when.getTime()) ? String(s.builtAt) : when.toLocaleString('en-GB');
       pill.textContent = `build ${s.hash}`;
+      const upd = $('#foot-updated');
+      if (upd && !Number.isNaN(when.getTime())) {
+        upd.textContent = `Updated ${when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+        const yr = $('#foot-year'); if (yr) yr.textContent = String(when.getFullYear());
+      }
       pill.title = `${s.target === 'website' ? 'Website build' : 'Desktop build'}, made ${built} from `
         + `${s.fileCount} source files. The identifier is a hash of that source: if it differs from `
         + 'another copy, the two are not running the same code.';

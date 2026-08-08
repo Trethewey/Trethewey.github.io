@@ -50,6 +50,18 @@
     <section id="view-about" class="view"></section>
   </main>
 
+  <!-- Website only: the desktop application has no page to return to. The updated date is filled in
+       from the build stamp, so it is the date this copy was actually built rather than one typed in
+       and left to go stale. -->
+  <footer class="site-foot">
+    <a href="https://christrethewey.dev/">← christrethewey.dev</a>
+    <span>© <span id="foot-year">2026</span> Chris Trethewey</span>
+    <span id="foot-updated"></span>
+    <small class="site-foot-ruo">For research use only. Not a medical device and not for use in
+      diagnostic procedures. Results are automated lookups of public databases, provided without
+      warranty — verify against a validated method before acting on them.</small>
+  </footer>
+
   <script src="renderer/vendor/3Dmol-min.js"></script>
   <!-- The browser bridge must define window.api before the shared renderer runs. -->
   <script type="module" src="web/api.mjs"></script>

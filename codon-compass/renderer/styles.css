@@ -584,3 +584,19 @@ a { color: var(--accent); cursor: pointer; }
 /* link buttons fill the card they are in, rather than trailing off at the right */
 .ve-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
 .ve-links > .btn, .ve-links > a { width: 100%; text-align: center; }
+
+/* Website footer — the desktop application has no page to return to, so this is only rendered there. */
+.site-foot {
+  display: flex; gap: 18px; flex-wrap: wrap; align-items: baseline;
+  max-width: 1280px; margin: 28px auto 20px; padding: 14px 22px 0;
+  border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--muted);
+}
+.site-foot a { color: #7ee0b0; text-decoration: none; }
+.site-foot a:hover { text-decoration: underline; }
+.site-foot span:nth-of-type(2) { margin-left: auto; }
+/* the standing disclaimer: its own line, quiet but legible — not hidden */
+.site-foot-ruo {
+  flex-basis: 100%; margin-top: 8px; font-size: 10.5px; line-height: 1.45;
+  color: var(--muted-2); max-width: 90ch;
+}
