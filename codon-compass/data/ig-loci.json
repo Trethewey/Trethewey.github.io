@@ -1,0 +1,81 @@
+{
+ "build": "GRCh38",
+ "source": "NCBI Gene esummary (span) + UCSC ncbiRefSeqOther (strand, span check)",
+ "strandRule": "the direction shared by the locus's constant-region genes",
+ "fetched": "2026-08-08",
+ "loci": [
+  {
+   "symbol": "IGH",
+   "name": "immunoglobulin heavy chain locus",
+   "chr": "14",
+   "start": 105586437,
+   "end": 106879844,
+   "strand": "-",
+   "band": "14q32.33",
+   "strandFrom": "IGHA2, IGHE, IGHG4, IGHG2, IGHA1, IGHG1, IGHG3, IGHD, IGHM"
+  },
+  {
+   "symbol": "IGK",
+   "name": "immunoglobulin kappa light chain locus",
+   "chr": "2",
+   "start": 88857361,
+   "end": 90235368,
+   "strand": "-",
+   "band": "2p11.2",
+   "strandFrom": "IGKC"
+  },
+  {
+   "symbol": "IGL",
+   "name": "immunoglobulin lambda light chain locus",
+   "chr": "22",
+   "start": 22026076,
+   "end": 22922913,
+   "strand": "+",
+   "band": "22q11.22",
+   "strandFrom": "IGLC1, IGLC2, IGLC3, IGLC7"
+  },
+  {
+   "symbol": "TRA",
+   "name": "T-cell receptor alpha locus",
+   "chr": "14",
+   "start": 21621904,
+   "end": 22552132,
+   "strand": "+",
+   "band": "14q11.2",
+   "strandFrom": "TRAC"
+  },
+  {
+   "symbol": "TRB",
+   "name": "T-cell receptor beta locus",
+   "chr": "7",
+   "start": 142299011,
+   "end": 142813287,
+   "strand": "+",
+   "band": "7q34",
+   "strandFrom": "TRBC1, TRBC2"
+  },
+  {
+   "symbol": "TRG",
+   "name": "T-cell receptor gamma locus",
+   "chr": "7",
+   "start": 38240024,
+   "end": 38368055,
+   "strand": "-",
+   "band": "7p14.1",
+   "strandFrom": "TRGC2, TRGC1"
+  },
+  {
+   "symbol": "TRD",
+   "name": "T-cell receptor delta locus",
+   "chr": "14",
+   "start": 22422546,
+   "end": 22469614,
+   "strand": "+",
+   "band": "14q11.2",
+   "strandFrom": "TRDC",
+   "declaredStart": 22422546,
+   "declaredEnd": 22466577,
+   "note": "span extended past the NCBI record to cover TRDV3"
+  }
+ ]
+}

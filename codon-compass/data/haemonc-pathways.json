@@ -1,0 +1,6126 @@
+{
+ "generatedAt": "2026-07-26T02:33:25.010Z",
+ "note": "Curated haematology-oncology pathway maps. Each mechanism claim was independently checked.",
+ "pathways": [
+  {
+   "id": "jak-stat",
+   "name": "JAK/STAT cytokine signalling",
+   "context": "MPN and other myeloid neoplasms; STAT3/SOCS1 in T-LGL, Hodgkin, PMBCL",
+   "nodes": [
+    {
+     "id": "calr",
+     "label": "CALR mutant",
+     "kind": "ligand",
+     "gene": "CALR",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "tpo",
+     "label": "TPO",
+     "kind": "ligand",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "gcsf",
+     "label": "G-CSF",
+     "kind": "ligand",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "mpl",
+     "label": "MPL",
+     "kind": "receptor",
+     "gene": "MPL",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "csf3r",
+     "label": "CSF3R",
+     "kind": "receptor",
+     "gene": "CSF3R",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "socs1",
+     "label": "SOCS1",
+     "kind": "adaptor",
+     "gene": "SOCS1",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "jak2",
+     "label": "JAK2",
+     "kind": "kinase",
+     "gene": "JAK2",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "stat5",
+     "label": "STAT5",
+     "kind": "tf",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "stat3",
+     "label": "STAT3",
+     "kind": "tf",
+     "gene": "STAT3",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 4,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "tpo",
+     "to": "mpl",
+     "kind": "activates"
+    },
+    {
+     "from": "calr",
+     "to": "mpl",
+     "kind": "activates"
+    },
+    {
+     "from": "gcsf",
+     "to": "csf3r",
+     "kind": "activates"
+    },
+    {
+     "from": "mpl",
+     "to": "jak2",
+     "kind": "activates"
+    },
+    {
+     "from": "csf3r",
+     "to": "jak2",
+     "kind": "activates"
+    },
+    {
+     "from": "socs1",
+     "to": "jak2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "jak2",
+     "to": "stat5",
+     "kind": "activates"
+    },
+    {
+     "from": "jak2",
+     "to": "stat3",
+     "kind": "activates"
+    },
+    {
+     "from": "stat5",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "stat3",
+     "to": "prolif",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "bcr-nfkb",
+   "name": "B-cell receptor to NF-kB",
+   "context": "Chronic active BCR/MYD88 signalling: ABC-DLBCL, Waldenstrom, CLL, MALT and marginal zone",
+   "nodes": [
+    {
+     "id": "cd79a",
+     "label": "CD79A",
+     "kind": "receptor",
+     "gene": "CD79A",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "cd79b",
+     "label": "CD79B",
+     "kind": "receptor",
+     "gene": "CD79B",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "tlr",
+     "label": "TLR / IL-1R",
+     "kind": "receptor",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "myd88",
+     "label": "MYD88",
+     "kind": "adaptor",
+     "gene": "MYD88",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "btk",
+     "label": "BTK",
+     "kind": "kinase",
+     "gene": "BTK",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "irak",
+     "label": "IRAK1 / IRAK4",
+     "kind": "kinase",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "plcg2",
+     "label": "PLCG2",
+     "kind": "other",
+     "gene": "PLCG2",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "card11",
+     "label": "CARD11",
+     "kind": "adaptor",
+     "gene": "CARD11",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "cbm",
+     "label": "CBM complex",
+     "kind": "complex",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "tnfaip3",
+     "label": "TNFAIP3 (A20)",
+     "kind": "other",
+     "gene": "TNFAIP3",
+     "row": 6,
+     "col": 0
+    },
+    {
+     "id": "birc3",
+     "label": "BIRC3",
+     "kind": "other",
+     "gene": "BIRC3",
+     "row": 6,
+     "col": 3
+    },
+    {
+     "id": "ikk",
+     "label": "IKK complex",
+     "kind": "complex",
+     "row": 6,
+     "col": 1
+    },
+    {
+     "id": "nfkb",
+     "label": "NF-kB",
+     "kind": "tf",
+     "row": 7,
+     "col": 1
+    },
+    {
+     "id": "survival",
+     "label": "Survival, growth",
+     "kind": "process",
+     "row": 8,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "cd79a",
+     "to": "btk",
+     "kind": "activates"
+    },
+    {
+     "from": "cd79b",
+     "to": "btk",
+     "kind": "activates"
+    },
+    {
+     "from": "btk",
+     "to": "plcg2",
+     "kind": "activates"
+    },
+    {
+     "from": "plcg2",
+     "to": "card11",
+     "kind": "activates"
+    },
+    {
+     "from": "card11",
+     "to": "cbm",
+     "kind": "activates"
+    },
+    {
+     "from": "cbm",
+     "to": "ikk",
+     "kind": "activates"
+    },
+    {
+     "from": "tlr",
+     "to": "myd88",
+     "kind": "activates"
+    },
+    {
+     "from": "myd88",
+     "to": "irak",
+     "kind": "activates"
+    },
+    {
+     "from": "irak",
+     "to": "ikk",
+     "kind": "activates"
+    },
+    {
+     "from": "tnfaip3",
+     "to": "ikk",
+     "kind": "inhibits"
+    },
+    {
+     "from": "birc3",
+     "to": "nfkb",
+     "kind": "inhibits"
+    },
+    {
+     "from": "ikk",
+     "to": "nfkb",
+     "kind": "activates"
+    },
+    {
+     "from": "nfkb",
+     "to": "survival",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "tlr-il1r-myd88-nfkb",
+   "name": "TLR / IL-1R to NF-kB",
+   "context": "MYD88 L265P disease: Waldenstrom, ABC-DLBCL (MCD/C5), primary CNS lymphoma, some CLL",
+   "nodes": [
+    {
+     "id": "tlr",
+     "label": "TLR",
+     "kind": "receptor",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "il1r",
+     "label": "IL-1R",
+     "kind": "receptor",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "myd88",
+     "label": "MYD88",
+     "kind": "adaptor",
+     "gene": "MYD88",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "irak4",
+     "label": "IRAK4",
+     "kind": "kinase",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "jak1",
+     "label": "JAK1",
+     "kind": "kinase",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "irak1",
+     "label": "IRAK1",
+     "kind": "kinase",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "traf6",
+     "label": "TRAF6",
+     "kind": "adaptor",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "tnfaip3",
+     "label": "TNFAIP3 (A20)",
+     "kind": "other",
+     "gene": "TNFAIP3",
+     "row": 4,
+     "col": 0
+    },
+    {
+     "id": "stat3",
+     "label": "STAT3",
+     "kind": "tf",
+     "gene": "STAT3",
+     "row": 4,
+     "col": 3
+    },
+    {
+     "id": "ikk",
+     "label": "IKK complex",
+     "kind": "complex",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "nfkb",
+     "label": "NF-kB",
+     "kind": "tf",
+     "row": 6,
+     "col": 1
+    },
+    {
+     "id": "irf4",
+     "label": "IRF4",
+     "kind": "tf",
+     "gene": "IRF4",
+     "row": 7,
+     "col": 2
+    },
+    {
+     "id": "survival",
+     "label": "Survival",
+     "kind": "process",
+     "row": 8,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "tlr",
+     "to": "myd88",
+     "kind": "activates"
+    },
+    {
+     "from": "il1r",
+     "to": "myd88",
+     "kind": "activates"
+    },
+    {
+     "from": "myd88",
+     "to": "irak4",
+     "kind": "activates"
+    },
+    {
+     "from": "myd88",
+     "to": "jak1",
+     "kind": "activates"
+    },
+    {
+     "from": "jak1",
+     "to": "stat3",
+     "kind": "activates"
+    },
+    {
+     "from": "irak4",
+     "to": "irak1",
+     "kind": "activates"
+    },
+    {
+     "from": "irak1",
+     "to": "traf6",
+     "kind": "activates"
+    },
+    {
+     "from": "tnfaip3",
+     "to": "traf6",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tnfaip3",
+     "to": "ikk",
+     "kind": "inhibits"
+    },
+    {
+     "from": "traf6",
+     "to": "ikk",
+     "kind": "activates"
+    },
+    {
+     "from": "ikk",
+     "to": "nfkb",
+     "kind": "activates"
+    },
+    {
+     "from": "nfkb",
+     "to": "irf4",
+     "kind": "activates"
+    },
+    {
+     "from": "nfkb",
+     "to": "survival",
+     "kind": "activates"
+    },
+    {
+     "from": "stat3",
+     "to": "survival",
+     "kind": "activates"
+    },
+    {
+     "from": "irf4",
+     "to": "survival",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "ras-mapk",
+   "name": "RAS/MAPK signalling",
+   "context": "Myeloid: JMML, CMML, AML, MDS; BRAF/MAP2K1 in hairy cell leukaemia and histiocytoses",
+   "nodes": [
+    {
+     "id": "kit",
+     "label": "KIT",
+     "kind": "receptor",
+     "gene": "KIT",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "flt3",
+     "label": "FLT3",
+     "kind": "receptor",
+     "gene": "FLT3",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "cbl",
+     "label": "CBL",
+     "kind": "other",
+     "gene": "CBL",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "ptpn11",
+     "label": "PTPN11",
+     "kind": "adaptor",
+     "gene": "PTPN11",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "nras",
+     "label": "NRAS",
+     "kind": "other",
+     "gene": "NRAS",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "kras",
+     "label": "KRAS",
+     "kind": "other",
+     "gene": "KRAS",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "nf1",
+     "label": "NF1",
+     "kind": "other",
+     "gene": "NF1",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "braf",
+     "label": "BRAF",
+     "kind": "kinase",
+     "gene": "BRAF",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "map2k1",
+     "label": "MAP2K1 (MEK1)",
+     "kind": "kinase",
+     "gene": "MAP2K1",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "erk",
+     "label": "ERK1/2",
+     "kind": "kinase",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 6,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "kit",
+     "to": "ptpn11",
+     "kind": "activates"
+    },
+    {
+     "from": "flt3",
+     "to": "ptpn11",
+     "kind": "activates"
+    },
+    {
+     "from": "cbl",
+     "to": "kit",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cbl",
+     "to": "flt3",
+     "kind": "inhibits"
+    },
+    {
+     "from": "ptpn11",
+     "to": "nras",
+     "kind": "activates"
+    },
+    {
+     "from": "ptpn11",
+     "to": "kras",
+     "kind": "activates"
+    },
+    {
+     "from": "nf1",
+     "to": "nras",
+     "kind": "inhibits"
+    },
+    {
+     "from": "nf1",
+     "to": "kras",
+     "kind": "inhibits"
+    },
+    {
+     "from": "nras",
+     "to": "braf",
+     "kind": "activates"
+    },
+    {
+     "from": "kras",
+     "to": "braf",
+     "kind": "activates"
+    },
+    {
+     "from": "braf",
+     "to": "map2k1",
+     "kind": "activates"
+    },
+    {
+     "from": "map2k1",
+     "to": "erk",
+     "kind": "activates"
+    },
+    {
+     "from": "erk",
+     "to": "prolif",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "pi3k-akt",
+   "name": "PI3K/AKT/mTOR",
+   "context": "Germinal-centre B-cell lymphomas: GCB-DLBCL, Burkitt, follicular",
+   "nodes": [
+    {
+     "id": "bcr",
+     "label": "B-cell receptor",
+     "kind": "receptor",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "pten",
+     "label": "PTEN",
+     "kind": "other",
+     "gene": "PTEN",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "pi3k",
+     "label": "PI3K",
+     "kind": "kinase",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "pip3",
+     "label": "PIP3",
+     "kind": "other",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "mtorc2",
+     "label": "mTORC2",
+     "kind": "complex",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "akt",
+     "label": "AKT",
+     "kind": "kinase",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "sgk1",
+     "label": "SGK1",
+     "kind": "kinase",
+     "gene": "SGK1",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "foxo1",
+     "label": "FOXO1",
+     "kind": "tf",
+     "gene": "FOXO1",
+     "row": 4,
+     "col": 0
+    },
+    {
+     "id": "mtorc1",
+     "label": "mTORC1",
+     "kind": "complex",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "gc",
+     "label": "Germinal centre",
+     "kind": "process",
+     "row": 5,
+     "col": 0
+    },
+    {
+     "id": "growth",
+     "label": "Growth, survival",
+     "kind": "process",
+     "row": 5,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "bcr",
+     "to": "pi3k",
+     "kind": "activates"
+    },
+    {
+     "from": "pi3k",
+     "to": "pip3",
+     "kind": "activates"
+    },
+    {
+     "from": "pten",
+     "to": "pip3",
+     "kind": "inhibits"
+    },
+    {
+     "from": "pip3",
+     "to": "akt",
+     "kind": "activates"
+    },
+    {
+     "from": "pip3",
+     "to": "mtorc2",
+     "kind": "activates"
+    },
+    {
+     "from": "mtorc2",
+     "to": "akt",
+     "kind": "activates"
+    },
+    {
+     "from": "mtorc2",
+     "to": "sgk1",
+     "kind": "activates"
+    },
+    {
+     "from": "akt",
+     "to": "mtorc1",
+     "kind": "activates"
+    },
+    {
+     "from": "akt",
+     "to": "foxo1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "sgk1",
+     "to": "foxo1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "mtorc1",
+     "to": "growth",
+     "kind": "activates"
+    },
+    {
+     "from": "foxo1",
+     "to": "gc",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "p53-dna-damage",
+   "name": "p53 / DNA damage response",
+   "context": "CLL, mantle cell lymphoma, MDS/AML, DLBCL and Richter transformation",
+   "nodes": [
+    {
+     "id": "pot1",
+     "label": "POT1",
+     "kind": "other",
+     "gene": "POT1",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "dna-damage",
+     "label": "DNA damage",
+     "kind": "process",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "telomere-damage",
+     "label": "Telomere damage",
+     "kind": "process",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "atm",
+     "label": "ATM",
+     "kind": "kinase",
+     "gene": "ATM",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "cdkn2a",
+     "label": "CDKN2A (ARF)",
+     "kind": "other",
+     "gene": "CDKN2A",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "chk2",
+     "label": "CHK2",
+     "kind": "kinase",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "mdm2",
+     "label": "MDM2",
+     "kind": "other",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "tp53",
+     "label": "TP53",
+     "kind": "tf",
+     "gene": "TP53",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "p21",
+     "label": "p21",
+     "kind": "other",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "puma-bax",
+     "label": "PUMA / BAX",
+     "kind": "other",
+     "row": 4,
+     "col": 3
+    },
+    {
+     "id": "arrest",
+     "label": "Cell-cycle arrest",
+     "kind": "process",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "apoptosis",
+     "label": "Apoptosis",
+     "kind": "process",
+     "row": 5,
+     "col": 3
+    }
+   ],
+   "edges": [
+    {
+     "from": "pot1",
+     "to": "telomere-damage",
+     "kind": "inhibits"
+    },
+    {
+     "from": "telomere-damage",
+     "to": "atm",
+     "kind": "activates"
+    },
+    {
+     "from": "dna-damage",
+     "to": "atm",
+     "kind": "activates"
+    },
+    {
+     "from": "atm",
+     "to": "chk2",
+     "kind": "activates"
+    },
+    {
+     "from": "chk2",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "atm",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "cdkn2a",
+     "to": "mdm2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "mdm2",
+     "to": "tp53",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tp53",
+     "to": "p21",
+     "kind": "activates"
+    },
+    {
+     "from": "tp53",
+     "to": "puma-bax",
+     "kind": "activates"
+    },
+    {
+     "from": "p21",
+     "to": "arrest",
+     "kind": "activates"
+    },
+    {
+     "from": "puma-bax",
+     "to": "apoptosis",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "epigenetic-regulators",
+   "name": "Epigenetic regulators",
+   "context": "Myeloid: AML, MDS, MPN, clonal haematopoiesis. In lymphoma the EZH2 arm reads the other way.",
+   "nodes": [
+    {
+     "id": "idh1",
+     "label": "IDH1",
+     "kind": "other",
+     "gene": "IDH1",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "idh2",
+     "label": "IDH2",
+     "kind": "other",
+     "gene": "IDH2",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "asxl1",
+     "label": "ASXL1",
+     "kind": "other",
+     "gene": "ASXL1",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "kmt2d",
+     "label": "KMT2D",
+     "kind": "other",
+     "gene": "KMT2D",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "hg2",
+     "label": "D-2-HG (mut IDH)",
+     "kind": "other",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "prc2",
+     "label": "EZH2 (PRC2)",
+     "kind": "complex",
+     "gene": "EZH2",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "crebbp",
+     "label": "CREBBP",
+     "kind": "other",
+     "gene": "CREBBP",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "tet2",
+     "label": "TET2",
+     "kind": "other",
+     "gene": "TET2",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "dnmt3a",
+     "label": "DNMT3A",
+     "kind": "other",
+     "gene": "DNMT3A",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "h3k27me3",
+     "label": "H3K27me3",
+     "kind": "process",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "ep300",
+     "label": "EP300",
+     "kind": "other",
+     "gene": "EP300",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "dnameth",
+     "label": "DNA methylation",
+     "kind": "process",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "selfrenew",
+     "label": "Self-renewal",
+     "kind": "process",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "enhancer",
+     "label": "Enhancer activity",
+     "kind": "process",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "diff",
+     "label": "Differentiation",
+     "kind": "process",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "demeth",
+     "label": "DNA demethylation",
+     "kind": "process",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "hoxa",
+     "label": "HOXA9/MEIS1",
+     "kind": "tf",
+     "row": 3,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "idh1",
+     "to": "hg2",
+     "kind": "activates"
+    },
+    {
+     "from": "idh2",
+     "to": "hg2",
+     "kind": "activates"
+    },
+    {
+     "from": "hg2",
+     "to": "tet2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "dnmt3a",
+     "to": "dnameth",
+     "kind": "activates"
+    },
+    {
+     "from": "asxl1",
+     "to": "prc2",
+     "kind": "activates"
+    },
+    {
+     "from": "prc2",
+     "to": "h3k27me3",
+     "kind": "activates"
+    },
+    {
+     "from": "kmt2d",
+     "to": "enhancer",
+     "kind": "activates"
+    },
+    {
+     "from": "crebbp",
+     "to": "enhancer",
+     "kind": "activates"
+    },
+    {
+     "from": "ep300",
+     "to": "enhancer",
+     "kind": "activates"
+    },
+    {
+     "from": "tet2",
+     "to": "selfrenew",
+     "kind": "inhibits"
+    },
+    {
+     "from": "selfrenew",
+     "to": "diff",
+     "kind": "inhibits"
+    },
+    {
+     "from": "enhancer",
+     "to": "diff",
+     "kind": "activates"
+    },
+    {
+     "from": "tet2",
+     "to": "demeth",
+     "kind": "activates"
+    },
+    {
+     "from": "demeth",
+     "to": "diff",
+     "kind": "activates"
+    },
+    {
+     "from": "dnameth",
+     "to": "selfrenew",
+     "kind": "inhibits"
+    },
+    {
+     "from": "h3k27me3",
+     "to": "hoxa",
+     "kind": "inhibits"
+    },
+    {
+     "from": "hoxa",
+     "to": "selfrenew",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "spliceosome",
+   "name": "Spliceosome / RNA splicing",
+   "context": "MDS, MDS/MPN (CMML), secondary AML; early clonal events, largely mutually exclusive",
+   "nodes": [
+    {
+     "id": "premrna",
+     "label": "pre-mRNA",
+     "kind": "other",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "sf3b1",
+     "label": "SF3B1",
+     "kind": "other",
+     "gene": "SF3B1",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "srsf2",
+     "label": "SRSF2",
+     "kind": "other",
+     "gene": "SRSF2",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "u2af1",
+     "label": "U2AF1",
+     "kind": "other",
+     "gene": "U2AF1",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "zrsr2",
+     "label": "ZRSR2",
+     "kind": "other",
+     "gene": "ZRSR2",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "major",
+     "label": "Major spliceosome",
+     "kind": "complex",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "minor",
+     "label": "Minor spliceosome",
+     "kind": "complex",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "cryptic",
+     "label": "Cryptic 3' sites",
+     "kind": "process",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "retention",
+     "label": "Intron retention",
+     "kind": "process",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "missplice",
+     "label": "Mis-spliced mRNA",
+     "kind": "process",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "dysplasia",
+     "label": "Dysplasia",
+     "kind": "process",
+     "row": 5,
+     "col": 0
+    },
+    {
+     "id": "clonal",
+     "label": "Clonal expansion",
+     "kind": "process",
+     "row": 5,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "premrna",
+     "to": "major",
+     "kind": "activates"
+    },
+    {
+     "from": "premrna",
+     "to": "minor",
+     "kind": "activates"
+    },
+    {
+     "from": "sf3b1",
+     "to": "major",
+     "kind": "activates"
+    },
+    {
+     "from": "srsf2",
+     "to": "major",
+     "kind": "activates"
+    },
+    {
+     "from": "u2af1",
+     "to": "major",
+     "kind": "activates"
+    },
+    {
+     "from": "zrsr2",
+     "to": "minor",
+     "kind": "activates"
+    },
+    {
+     "from": "major",
+     "to": "cryptic",
+     "kind": "inhibits"
+    },
+    {
+     "from": "major",
+     "to": "retention",
+     "kind": "inhibits"
+    },
+    {
+     "from": "minor",
+     "to": "retention",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cryptic",
+     "to": "missplice",
+     "kind": "activates"
+    },
+    {
+     "from": "retention",
+     "to": "missplice",
+     "kind": "activates"
+    },
+    {
+     "from": "missplice",
+     "to": "dysplasia",
+     "kind": "activates"
+    },
+    {
+     "from": "missplice",
+     "to": "clonal",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "notch-lymphoid",
+   "name": "NOTCH in lymphoid malignancy",
+   "context": "Truncating NOTCH1/NOTCH2: CLL (poor risk), mantle cell, splenic marginal zone lymphoma",
+   "nodes": [
+    {
+     "id": "ligand",
+     "label": "DLL1 / JAG1",
+     "kind": "ligand",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "notch1",
+     "label": "NOTCH1",
+     "kind": "receptor",
+     "gene": "NOTCH1",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "notch2",
+     "label": "NOTCH2",
+     "kind": "receptor",
+     "gene": "NOTCH2",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "adam17",
+     "label": "ADAM10/17 cut",
+     "kind": "process",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "gsec",
+     "label": "Gamma-secretase",
+     "kind": "complex",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "pest",
+     "label": "PEST truncation",
+     "kind": "other",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "nicd",
+     "label": "NICD",
+     "kind": "other",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "fbxw7",
+     "label": "FBXW7 turnover",
+     "kind": "process",
+     "row": 4,
+     "col": 3
+    },
+    {
+     "id": "rbpj",
+     "label": "RBPJ + MAML1",
+     "kind": "tf",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "hes1",
+     "label": "HES1",
+     "kind": "tf",
+     "row": 6,
+     "col": 0
+    },
+    {
+     "id": "myc",
+     "label": "MYC",
+     "kind": "tf",
+     "gene": "MYC",
+     "row": 6,
+     "col": 2
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 7,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "ligand",
+     "to": "notch1",
+     "kind": "activates"
+    },
+    {
+     "from": "ligand",
+     "to": "notch2",
+     "kind": "activates"
+    },
+    {
+     "from": "notch1",
+     "to": "adam17",
+     "kind": "activates"
+    },
+    {
+     "from": "notch2",
+     "to": "adam17",
+     "kind": "activates"
+    },
+    {
+     "from": "adam17",
+     "to": "gsec",
+     "kind": "activates"
+    },
+    {
+     "from": "gsec",
+     "to": "nicd",
+     "kind": "activates"
+    },
+    {
+     "from": "nicd",
+     "to": "rbpj",
+     "kind": "activates"
+    },
+    {
+     "from": "rbpj",
+     "to": "hes1",
+     "kind": "activates"
+    },
+    {
+     "from": "rbpj",
+     "to": "myc",
+     "kind": "activates"
+    },
+    {
+     "from": "hes1",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "myc",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "fbxw7",
+     "to": "nicd",
+     "kind": "inhibits"
+    },
+    {
+     "from": "pest",
+     "to": "fbxw7",
+     "kind": "inhibits"
+    }
+   ]
+  },
+  {
+   "id": "transcription-differentiation",
+   "name": "Myeloid TF differentiation block",
+   "context": "AML and MDS; germline predisposition (RUNX1, CEBPA, GATA2, ETV6)",
+   "nodes": [
+    {
+     "id": "runx1",
+     "label": "RUNX1",
+     "kind": "tf",
+     "gene": "RUNX1",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "cebpa",
+     "label": "CEBPA",
+     "kind": "tf",
+     "gene": "CEBPA",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "gata2",
+     "label": "GATA2",
+     "kind": "tf",
+     "gene": "GATA2",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "etv6",
+     "label": "ETV6",
+     "kind": "tf",
+     "gene": "ETV6",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "npm1c",
+     "label": "NPM1 cytoplasmic",
+     "kind": "other",
+     "gene": "NPM1",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "tfcore",
+     "label": "Myeloid TF network",
+     "kind": "complex",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "myc",
+     "label": "MYC",
+     "kind": "tf",
+     "gene": "MYC",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "hoxa",
+     "label": "HOXA9/MEIS1",
+     "kind": "tf",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "maturation",
+     "label": "Myeloid maturation",
+     "kind": "process",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "selfrenew",
+     "label": "Self-renewal",
+     "kind": "process",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 4,
+     "col": 3
+    },
+    {
+     "id": "aml",
+     "label": "AML blasts",
+     "kind": "process",
+     "row": 5,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "runx1",
+     "to": "tfcore",
+     "kind": "activates"
+    },
+    {
+     "from": "cebpa",
+     "to": "tfcore",
+     "kind": "activates"
+    },
+    {
+     "from": "gata2",
+     "to": "tfcore",
+     "kind": "activates"
+    },
+    {
+     "from": "etv6",
+     "to": "tfcore",
+     "kind": "activates"
+    },
+    {
+     "from": "cebpa",
+     "to": "myc",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tfcore",
+     "to": "maturation",
+     "kind": "activates"
+    },
+    {
+     "from": "npm1c",
+     "to": "hoxa",
+     "kind": "activates"
+    },
+    {
+     "from": "hoxa",
+     "to": "selfrenew",
+     "kind": "activates"
+    },
+    {
+     "from": "hoxa",
+     "to": "maturation",
+     "kind": "inhibits"
+    },
+    {
+     "from": "myc",
+     "to": "maturation",
+     "kind": "inhibits"
+    },
+    {
+     "from": "myc",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "maturation",
+     "to": "aml",
+     "kind": "inhibits"
+    },
+    {
+     "from": "selfrenew",
+     "to": "aml",
+     "kind": "activates"
+    },
+    {
+     "from": "prolif",
+     "to": "aml",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "apoptosis-survival",
+   "name": "Apoptosis and survival",
+   "context": "DLBCL, follicular, Burkitt/high-grade B-cell, CLL, mantle cell",
+   "nodes": [
+    {
+     "id": "bcl6",
+     "label": "BCL6",
+     "kind": "tf",
+     "gene": "BCL6",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "myc",
+     "label": "MYC",
+     "kind": "tf",
+     "gene": "MYC",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "pim1",
+     "label": "PIM1",
+     "kind": "kinase",
+     "gene": "PIM1",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "prdm1",
+     "label": "PRDM1",
+     "kind": "tf",
+     "gene": "PRDM1",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "cdkn2a",
+     "label": "CDKN2A",
+     "kind": "other",
+     "gene": "CDKN2A",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "atm",
+     "label": "ATM",
+     "kind": "kinase",
+     "gene": "ATM",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "exit",
+     "label": "Plasma cell exit",
+     "kind": "process",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "mdm2",
+     "label": "MDM2",
+     "kind": "other",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "bad",
+     "label": "BAD",
+     "kind": "other",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "tp53",
+     "label": "TP53",
+     "kind": "tf",
+     "gene": "TP53",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "bcl2",
+     "label": "BCL2",
+     "kind": "other",
+     "gene": "BCL2",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "apop",
+     "label": "Apoptosis",
+     "kind": "process",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 4,
+     "col": 3
+    }
+   ],
+   "edges": [
+    {
+     "from": "bcl6",
+     "to": "prdm1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "bcl6",
+     "to": "tp53",
+     "kind": "inhibits"
+    },
+    {
+     "from": "prdm1",
+     "to": "exit",
+     "kind": "activates"
+    },
+    {
+     "from": "myc",
+     "to": "cdkn2a",
+     "kind": "activates"
+    },
+    {
+     "from": "myc",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "myc",
+     "to": "apop",
+     "kind": "activates"
+    },
+    {
+     "from": "cdkn2a",
+     "to": "mdm2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "mdm2",
+     "to": "tp53",
+     "kind": "inhibits"
+    },
+    {
+     "from": "atm",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "tp53",
+     "to": "apop",
+     "kind": "activates"
+    },
+    {
+     "from": "bcl2",
+     "to": "apop",
+     "kind": "inhibits"
+    },
+    {
+     "from": "bad",
+     "to": "bcl2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "pim1",
+     "to": "bad",
+     "kind": "inhibits"
+    },
+    {
+     "from": "pim1",
+     "to": "myc",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "immune-evasion",
+   "name": "Immune evasion",
+   "context": "Loss of antigen presentation in DLBCL, PMBCL, Hodgkin and follicular lymphoma",
+   "nodes": [
+    {
+     "id": "irf4",
+     "label": "IRF4",
+     "kind": "tf",
+     "gene": "IRF4",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "irf8",
+     "label": "IRF8",
+     "kind": "tf",
+     "gene": "IRF8",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "tnfrsf14",
+     "label": "TNFRSF14 (HVEM)",
+     "kind": "receptor",
+     "gene": "TNFRSF14",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "prdm1",
+     "label": "PRDM1",
+     "kind": "tf",
+     "gene": "PRDM1",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "b2m",
+     "label": "B2M",
+     "kind": "other",
+     "gene": "B2M",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "btla",
+     "label": "BTLA (TFH)",
+     "kind": "receptor",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "ciita",
+     "label": "CIITA",
+     "kind": "tf",
+     "gene": "CIITA",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "help",
+     "label": "T-cell help",
+     "kind": "process",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "mhc2",
+     "label": "MHC class II",
+     "kind": "complex",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "mhc1",
+     "label": "MHC class I",
+     "kind": "complex",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "cd58",
+     "label": "CD58",
+     "kind": "ligand",
+     "gene": "CD58",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "cd4t",
+     "label": "CD4 T cell",
+     "kind": "other",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "cd8t",
+     "label": "CD8 T cell",
+     "kind": "other",
+     "row": 4,
+     "col": 2
+    },
+    {
+     "id": "kill",
+     "label": "Tumour killing",
+     "kind": "process",
+     "row": 5,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "irf4",
+     "to": "prdm1",
+     "kind": "activates"
+    },
+    {
+     "from": "prdm1",
+     "to": "ciita",
+     "kind": "inhibits"
+    },
+    {
+     "from": "irf8",
+     "to": "ciita",
+     "kind": "activates"
+    },
+    {
+     "from": "ciita",
+     "to": "mhc2",
+     "kind": "activates"
+    },
+    {
+     "from": "b2m",
+     "to": "mhc1",
+     "kind": "activates"
+    },
+    {
+     "from": "mhc2",
+     "to": "cd4t",
+     "kind": "activates"
+    },
+    {
+     "from": "mhc1",
+     "to": "cd8t",
+     "kind": "activates"
+    },
+    {
+     "from": "cd58",
+     "to": "cd8t",
+     "kind": "activates"
+    },
+    {
+     "from": "tnfrsf14",
+     "to": "btla",
+     "kind": "activates"
+    },
+    {
+     "from": "btla",
+     "to": "help",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cd4t",
+     "to": "kill",
+     "kind": "activates"
+    },
+    {
+     "from": "cd8t",
+     "to": "kill",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "tcr-ptcl",
+   "name": "T-cell receptor signalling in peripheral T…",
+   "context": "Angioimmunoblastic T-cell lymphoma (AITL) and other nodal T-follicular-helper (Tfh) lymphomas",
+   "nodes": [
+    {
+     "id": "tcr",
+     "label": "TCR",
+     "kind": "receptor",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "cd28",
+     "label": "CD28",
+     "kind": "receptor",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "idh2",
+     "label": "IDH2 R172",
+     "gene": "IDH2",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "lat",
+     "label": "LAT / SLP76",
+     "kind": "adaptor",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "rhoa_g17v",
+     "label": "RHOA G17V",
+     "gene": "RHOA",
+     "kind": "other",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "tet2",
+     "label": "TET2",
+     "gene": "TET2",
+     "kind": "other",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "vav1",
+     "label": "VAV1",
+     "kind": "adaptor",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "dnmt3a",
+     "label": "DNMT3A",
+     "gene": "DNMT3A",
+     "kind": "other",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "rhoa_wt",
+     "label": "RHOA wild type",
+     "gene": "RHOA",
+     "kind": "other",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "pkctheta",
+     "label": "PKC-theta",
+     "kind": "kinase",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "cytoskeleton",
+     "label": "Cytoskeleton",
+     "kind": "process",
+     "row": 4,
+     "col": 0
+    },
+    {
+     "id": "cbm",
+     "label": "CARD11 complex",
+     "gene": "CARD11",
+     "kind": "complex",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "nfkb",
+     "label": "NF-kB",
+     "kind": "tf",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "prolif",
+     "label": "Tfh proliferation",
+     "kind": "process",
+     "row": 6,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "tcr",
+     "to": "lat",
+     "kind": "activates"
+    },
+    {
+     "from": "cd28",
+     "to": "pkctheta",
+     "kind": "activates"
+    },
+    {
+     "from": "cd28",
+     "to": "vav1",
+     "kind": "activates"
+    },
+    {
+     "from": "lat",
+     "to": "vav1",
+     "kind": "activates"
+    },
+    {
+     "from": "lat",
+     "to": "pkctheta",
+     "kind": "activates"
+    },
+    {
+     "from": "vav1",
+     "to": "rhoa_wt",
+     "kind": "activates"
+    },
+    {
+     "from": "rhoa_wt",
+     "to": "cytoskeleton",
+     "kind": "activates"
+    },
+    {
+     "from": "rhoa_g17v",
+     "to": "rhoa_wt",
+     "kind": "inhibits"
+    },
+    {
+     "from": "rhoa_g17v",
+     "to": "vav1",
+     "kind": "activates"
+    },
+    {
+     "from": "vav1",
+     "to": "cbm",
+     "kind": "activates"
+    },
+    {
+     "from": "pkctheta",
+     "to": "cbm",
+     "kind": "activates"
+    },
+    {
+     "from": "cbm",
+     "to": "nfkb",
+     "kind": "activates"
+    },
+    {
+     "from": "nfkb",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "idh2",
+     "to": "tet2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tet2",
+     "to": "prolif",
+     "kind": "inhibits"
+    },
+    {
+     "from": "dnmt3a",
+     "to": "prolif",
+     "kind": "inhibits"
+    }
+   ]
+  },
+  {
+   "id": "gc-confinement",
+   "name": "Germinal-centre confinement",
+   "context": "Germinal-centre B cells are held in the niche by S1PR2 and P2RY8 signalling through Ga13 (GN…",
+   "nodes": [
+    {
+     "id": "s1p",
+     "label": "S1P",
+     "kind": "ligand",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "s1pr2",
+     "label": "S1PR2",
+     "kind": "receptor",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "p2ry8",
+     "label": "P2RY8",
+     "kind": "receptor",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "gna13",
+     "gene": "GNA13",
+     "label": "GNA13",
+     "kind": "adaptor",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "arhgef1",
+     "label": "ARHGEF1",
+     "kind": "adaptor",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "rhoa",
+     "gene": "RHOA",
+     "label": "RHOA",
+     "kind": "other",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "migration",
+     "label": "Migration",
+     "kind": "process",
+     "row": 5,
+     "col": 0
+    },
+    {
+     "id": "akt",
+     "label": "PI3K / AKT",
+     "kind": "kinase",
+     "row": 5,
+     "col": 3
+    },
+    {
+     "id": "confine",
+     "label": "GC confinement",
+     "kind": "process",
+     "row": 6,
+     "col": 1
+    },
+    {
+     "id": "growth",
+     "label": "Growth, survival",
+     "kind": "process",
+     "row": 6,
+     "col": 3
+    },
+    {
+     "id": "escape",
+     "label": "Escape from GC",
+     "kind": "process",
+     "row": 8,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "s1p",
+     "to": "s1pr2",
+     "kind": "activates"
+    },
+    {
+     "from": "s1pr2",
+     "to": "gna13",
+     "kind": "activates"
+    },
+    {
+     "from": "p2ry8",
+     "to": "gna13",
+     "kind": "activates"
+    },
+    {
+     "from": "gna13",
+     "to": "arhgef1",
+     "kind": "activates"
+    },
+    {
+     "from": "arhgef1",
+     "to": "rhoa",
+     "kind": "activates"
+    },
+    {
+     "from": "rhoa",
+     "to": "migration",
+     "kind": "inhibits"
+    },
+    {
+     "from": "rhoa",
+     "to": "akt",
+     "kind": "inhibits"
+    },
+    {
+     "from": "rhoa",
+     "to": "confine",
+     "kind": "activates"
+    },
+    {
+     "from": "akt",
+     "to": "growth",
+     "kind": "activates"
+    },
+    {
+     "from": "migration",
+     "to": "escape",
+     "kind": "activates"
+    },
+    {
+     "from": "growth",
+     "to": "escape",
+     "kind": "activates"
+    },
+    {
+     "from": "confine",
+     "to": "escape",
+     "kind": "inhibits"
+    }
+   ]
+  },
+  {
+   "id": "burkitt-myc",
+   "name": "Burkitt lymphoma: MYC with the TCF3-ID3 axis",
+   "context": "Sporadic and endemic Burkitt lymphoma",
+   "nodes": [
+    {
+     "id": "bcr",
+     "label": "Tonic BCR",
+     "kind": "receptor",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "id3",
+     "label": "ID3",
+     "kind": "other",
+     "gene": "ID3",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "transloc",
+     "label": "t(8;14) IGH-MYC",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "tcf3",
+     "label": "TCF3 (E2A)",
+     "kind": "tf",
+     "gene": "TCF3",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "myc",
+     "label": "MYC",
+     "kind": "tf",
+     "gene": "MYC",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "cd79",
+     "label": "CD79A/B",
+     "kind": "adaptor",
+     "gene": "CD79A",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "ccnd3",
+     "label": "CCND3/CDK6",
+     "kind": "complex",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "pi3k",
+     "label": "PI3K",
+     "kind": "kinase",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "g1s",
+     "label": "G1/S entry",
+     "kind": "process",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "tp53",
+     "label": "TP53",
+     "kind": "tf",
+     "gene": "TP53",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "akt",
+     "label": "AKT",
+     "kind": "kinase",
+     "row": 4,
+     "col": 0
+    },
+    {
+     "id": "apoptosis",
+     "label": "Apoptosis",
+     "kind": "process",
+     "row": 4,
+     "col": 3
+    },
+    {
+     "id": "foxo1",
+     "label": "FOXO1",
+     "kind": "tf",
+     "gene": "FOXO1",
+     "row": 5,
+     "col": 0
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 6,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "bcr",
+     "to": "cd79",
+     "kind": "activates"
+    },
+    {
+     "from": "cd79",
+     "to": "pi3k",
+     "kind": "activates"
+    },
+    {
+     "from": "pi3k",
+     "to": "akt",
+     "kind": "activates"
+    },
+    {
+     "from": "akt",
+     "to": "foxo1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "akt",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "id3",
+     "to": "tcf3",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tcf3",
+     "to": "cd79",
+     "kind": "activates"
+    },
+    {
+     "from": "tcf3",
+     "to": "ccnd3",
+     "kind": "activates"
+    },
+    {
+     "from": "transloc",
+     "to": "myc",
+     "kind": "activates"
+    },
+    {
+     "from": "myc",
+     "to": "g1s",
+     "kind": "activates"
+    },
+    {
+     "from": "myc",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "myc",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "ccnd3",
+     "to": "g1s",
+     "kind": "activates"
+    },
+    {
+     "from": "g1s",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "tp53",
+     "to": "apoptosis",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "cellcycle-nuclear",
+   "name": "Cell cycle control and nuclear export",
+   "context": "G1/S control in mantle cell lymphoma (cyclin D1, CDK4/6, RB) alongside XPO1 (exportin-1) med…",
+   "nodes": [
+    {
+     "id": "ccnd1",
+     "gene": "CCND1",
+     "label": "CCND1",
+     "kind": "other",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "cdkn2a",
+     "gene": "CDKN2A",
+     "label": "CDKN2A",
+     "kind": "other",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "atm",
+     "gene": "ATM",
+     "label": "ATM",
+     "kind": "kinase",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "xpo1",
+     "gene": "XPO1",
+     "label": "XPO1",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "cdk46",
+     "label": "CDK4/6",
+     "kind": "kinase",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "export",
+     "label": "Nuclear export",
+     "kind": "process",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "rb",
+     "label": "RB",
+     "kind": "other",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "tp53",
+     "gene": "TP53",
+     "label": "TP53",
+     "kind": "tf",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "e2f",
+     "label": "E2F",
+     "kind": "tf",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "p21",
+     "label": "p21 (CDKN1A)",
+     "kind": "other",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "g1s",
+     "label": "G1/S transition",
+     "kind": "process",
+     "row": 4,
+     "col": 0
+    },
+    {
+     "id": "arrest",
+     "label": "Arrest/apoptosis",
+     "kind": "process",
+     "row": 4,
+     "col": 2
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 5,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "ccnd1",
+     "to": "cdk46",
+     "kind": "activates"
+    },
+    {
+     "from": "cdkn2a",
+     "to": "cdk46",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cdkn2a",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "cdk46",
+     "to": "rb",
+     "kind": "inhibits"
+    },
+    {
+     "from": "rb",
+     "to": "e2f",
+     "kind": "inhibits"
+    },
+    {
+     "from": "e2f",
+     "to": "g1s",
+     "kind": "activates"
+    },
+    {
+     "from": "g1s",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "atm",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "xpo1",
+     "to": "export",
+     "kind": "activates"
+    },
+    {
+     "from": "export",
+     "to": "tp53",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tp53",
+     "to": "p21",
+     "kind": "activates"
+    },
+    {
+     "from": "tp53",
+     "to": "arrest",
+     "kind": "activates"
+    },
+    {
+     "from": "p21",
+     "to": "arrest",
+     "kind": "activates"
+    },
+    {
+     "from": "arrest",
+     "to": "prolif",
+     "kind": "inhibits"
+    }
+   ]
+  },
+  {
+   "id": "il4-jak-stat6",
+   "name": "IL-4/IL-13 - JAK - STAT6",
+   "context": "Type II IL-4/IL-13 receptor signalling in B-cell lymphoma",
+   "nodes": [
+    {
+     "id": "il4",
+     "label": "IL-4 / IL-13",
+     "kind": "ligand",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "il4r",
+     "label": "IL4R / IL13RA1",
+     "kind": "receptor",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "jak",
+     "label": "JAK1 / JAK2",
+     "kind": "kinase",
+     "gene": "JAK2",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "socs1",
+     "label": "SOCS1",
+     "kind": "adaptor",
+     "gene": "SOCS1",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "stat6",
+     "label": "STAT6",
+     "kind": "tf",
+     "gene": "STAT6",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "stat6dimer",
+     "label": "STAT6 dimer",
+     "kind": "complex",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "chemokines",
+     "label": "CCL17 / CCL22",
+     "kind": "other",
+     "row": 5,
+     "col": 0
+    },
+    {
+     "id": "survgenes",
+     "label": "BCL-xL, CD23",
+     "kind": "other",
+     "row": 5,
+     "col": 2
+    },
+    {
+     "id": "microenv",
+     "label": "Th2 / Treg influx",
+     "kind": "process",
+     "row": 6,
+     "col": 0
+    },
+    {
+     "id": "survival",
+     "label": "B-cell survival",
+     "kind": "process",
+     "row": 6,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "il4",
+     "to": "il4r",
+     "kind": "activates"
+    },
+    {
+     "from": "il4r",
+     "to": "jak",
+     "kind": "activates"
+    },
+    {
+     "from": "jak",
+     "to": "stat6",
+     "kind": "activates"
+    },
+    {
+     "from": "stat6",
+     "to": "stat6dimer",
+     "kind": "activates"
+    },
+    {
+     "from": "stat6dimer",
+     "to": "chemokines",
+     "kind": "activates"
+    },
+    {
+     "from": "stat6dimer",
+     "to": "survgenes",
+     "kind": "activates"
+    },
+    {
+     "from": "stat6dimer",
+     "to": "socs1",
+     "kind": "activates"
+    },
+    {
+     "from": "socs1",
+     "to": "jak",
+     "kind": "inhibits"
+    },
+    {
+     "from": "chemokines",
+     "to": "microenv",
+     "kind": "activates"
+    },
+    {
+     "from": "survgenes",
+     "to": "survival",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "rtk-ras",
+   "name": "Receptor tyrosine kinases to RAS",
+   "context": "Receptor tyrosine kinases converge on the GRB2/SOS1 adaptor, which loads GTP onto RAS",
+   "nodes": [
+    {
+     "id": "egfr",
+     "gene": "EGFR",
+     "label": "EGFR",
+     "kind": "receptor",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "erbb2",
+     "gene": "ERBB2",
+     "label": "ERBB2",
+     "kind": "receptor",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "erbb3",
+     "gene": "ERBB3",
+     "label": "ERBB3",
+     "kind": "receptor",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "erbb4",
+     "gene": "ERBB4",
+     "label": "ERBB4",
+     "kind": "receptor",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "fgfr2",
+     "gene": "FGFR2",
+     "label": "FGFR2",
+     "kind": "receptor",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "fgfr3",
+     "gene": "FGFR3",
+     "label": "FGFR3",
+     "kind": "receptor",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "alk",
+     "gene": "ALK",
+     "label": "ALK",
+     "kind": "receptor",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "ret",
+     "gene": "RET",
+     "label": "RET",
+     "kind": "receptor",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "met",
+     "gene": "MET",
+     "label": "MET",
+     "kind": "receptor",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "kdr",
+     "gene": "KDR",
+     "label": "KDR",
+     "kind": "receptor",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "ntrk1",
+     "gene": "NTRK1",
+     "label": "NTRK1",
+     "kind": "receptor",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "kit",
+     "gene": "KIT",
+     "label": "KIT",
+     "kind": "receptor",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "grb2sos1",
+     "gene": "SOS1",
+     "label": "GRB2/SOS1",
+     "kind": "adaptor",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "hras",
+     "gene": "HRAS",
+     "label": "HRAS",
+     "kind": "other",
+     "row": 6,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "egfr",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "erbb2",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "erbb3",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "erbb4",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "fgfr2",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "fgfr3",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "alk",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "ret",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "met",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "kdr",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "ntrk1",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "kit",
+     "to": "grb2sos1",
+     "kind": "activates"
+    },
+    {
+     "from": "grb2sos1",
+     "to": "hras",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "ras-mapk-ext",
+   "name": "RAS/MAPK cascade",
+   "context": "Canonical RAS-RAF-MEK-ERK proliferation cascade plus the JNK/p38 stress arm, which drives ap…",
+   "nodes": [
+    {
+     "id": "nf1",
+     "gene": "NF1",
+     "label": "NF1",
+     "kind": "other",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "sos1",
+     "gene": "SOS1",
+     "label": "SOS1",
+     "kind": "other",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "lztr1",
+     "gene": "LZTR1",
+     "label": "LZTR1",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "rit1",
+     "gene": "RIT1",
+     "label": "RIT1",
+     "kind": "other",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "ras",
+     "gene": "HRAS",
+     "label": "RAS (H/K/N)",
+     "kind": "other",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "rras2",
+     "gene": "RRAS2",
+     "label": "RRAS2",
+     "kind": "other",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "araf",
+     "label": "ARAF",
+     "kind": "kinase",
+     "gene": "ARAF",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "braf",
+     "label": "BRAF",
+     "kind": "kinase",
+     "gene": "BRAF",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "raf1",
+     "label": "RAF1 (CRAF)",
+     "kind": "kinase",
+     "gene": "RAF1",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "raf",
+     "label": "RAF activity",
+     "kind": "process",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "ppp6c",
+     "gene": "PPP6C",
+     "label": "PPP6C",
+     "kind": "other",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "mek",
+     "label": "MEK1/2",
+     "kind": "kinase",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "map2k4",
+     "gene": "MAP2K4",
+     "label": "MAP2K4",
+     "kind": "kinase",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "erk",
+     "gene": "MAPK1",
+     "label": "ERK1/2",
+     "kind": "kinase",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "stress",
+     "label": "JNK / p38",
+     "kind": "kinase",
+     "row": 4,
+     "col": 2
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "apop",
+     "label": "Apoptosis / arrest",
+     "kind": "process",
+     "row": 5,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "sos1",
+     "to": "ras",
+     "kind": "activates"
+    },
+    {
+     "from": "nf1",
+     "to": "ras",
+     "kind": "inhibits"
+    },
+    {
+     "from": "lztr1",
+     "to": "ras",
+     "kind": "inhibits"
+    },
+    {
+     "from": "lztr1",
+     "to": "rit1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "rit1",
+     "to": "raf",
+     "kind": "activates"
+    },
+    {
+     "from": "rras2",
+     "to": "raf",
+     "kind": "activates"
+    },
+    {
+     "from": "ras",
+     "to": "raf",
+     "kind": "activates"
+    },
+    {
+     "from": "araf",
+     "to": "raf",
+     "kind": "activates"
+    },
+    {
+     "from": "braf",
+     "to": "raf",
+     "kind": "activates"
+    },
+    {
+     "from": "raf1",
+     "to": "raf",
+     "kind": "activates"
+    },
+    {
+     "from": "raf",
+     "to": "mek",
+     "kind": "activates"
+    },
+    {
+     "from": "ppp6c",
+     "to": "mek",
+     "kind": "inhibits"
+    },
+    {
+     "from": "mek",
+     "to": "erk",
+     "kind": "activates"
+    },
+    {
+     "from": "erk",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "ras",
+     "to": "map2k4",
+     "kind": "activates"
+    },
+    {
+     "from": "map2k4",
+     "to": "stress",
+     "kind": "activates"
+    },
+    {
+     "from": "stress",
+     "to": "apop",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "pi3k-akt-mtor",
+   "name": "PI3K/AKT/mTOR growth signalling",
+   "context": "Growth-factor PI3K axis to mTORC1",
+   "nodes": [
+    {
+     "id": "irs2",
+     "gene": "IRS2",
+     "label": "IRS2",
+     "kind": "adaptor",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "pik3r1",
+     "gene": "PIK3R1",
+     "label": "PIK3R1 (p85)",
+     "kind": "adaptor",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "pik3ca",
+     "gene": "PIK3CA",
+     "label": "PIK3CA",
+     "kind": "kinase",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "pik3cd",
+     "gene": "PIK3CD",
+     "label": "PIK3CD",
+     "kind": "kinase",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "pten",
+     "label": "PTEN",
+     "kind": "other",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "pip3",
+     "label": "PIP3",
+     "kind": "other",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "ppp2r1a",
+     "gene": "PPP2R1A",
+     "label": "PPP2R1A (PP2A)",
+     "kind": "other",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "akt1",
+     "gene": "AKT1",
+     "label": "AKT1",
+     "kind": "kinase",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "rictor",
+     "gene": "RICTOR",
+     "label": "mTORC2 (RICTOR)",
+     "kind": "complex",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "tsc1",
+     "gene": "TSC1",
+     "label": "TSC1",
+     "kind": "other",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "stk11",
+     "gene": "STK11",
+     "label": "STK11 (LKB1)",
+     "kind": "kinase",
+     "row": 5,
+     "col": 0
+    },
+    {
+     "id": "mtor",
+     "gene": "MTOR",
+     "label": "mTORC1 (MTOR)",
+     "kind": "kinase",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "growth",
+     "label": "Cell growth",
+     "kind": "process",
+     "row": 6,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "irs2",
+     "to": "pik3ca",
+     "kind": "activates"
+    },
+    {
+     "from": "irs2",
+     "to": "pik3cd",
+     "kind": "activates"
+    },
+    {
+     "from": "pik3r1",
+     "to": "pik3ca",
+     "kind": "inhibits"
+    },
+    {
+     "from": "pik3ca",
+     "to": "pip3",
+     "kind": "activates"
+    },
+    {
+     "from": "pik3cd",
+     "to": "pip3",
+     "kind": "activates"
+    },
+    {
+     "from": "pten",
+     "to": "pip3",
+     "kind": "inhibits"
+    },
+    {
+     "from": "pip3",
+     "to": "akt1",
+     "kind": "activates"
+    },
+    {
+     "from": "ppp2r1a",
+     "to": "akt1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "rictor",
+     "to": "akt1",
+     "kind": "activates"
+    },
+    {
+     "from": "akt1",
+     "to": "tsc1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tsc1",
+     "to": "mtor",
+     "kind": "inhibits"
+    },
+    {
+     "from": "stk11",
+     "to": "mtor",
+     "kind": "inhibits"
+    },
+    {
+     "from": "mtor",
+     "to": "growth",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "swi-snf",
+   "name": "SWI/SNF",
+   "context": "SWI/SNF (BAF) chromatin remodelling complex; subunits are loss-of-function tumour suppressor…",
+   "nodes": [
+    {
+     "id": "smarca4",
+     "gene": "SMARCA4",
+     "label": "SMARCA4",
+     "kind": "other",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "smarcb1",
+     "gene": "SMARCB1",
+     "label": "SMARCB1",
+     "kind": "other",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "arid1a",
+     "gene": "ARID1A",
+     "label": "ARID1A",
+     "kind": "other",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "pbrm1",
+     "gene": "PBRM1",
+     "label": "PBRM1",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "arid2",
+     "gene": "ARID2",
+     "label": "ARID2",
+     "kind": "other",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "baf",
+     "label": "SWI/SNF (BAF)",
+     "kind": "complex",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "remodel",
+     "label": "Remodelling",
+     "kind": "process",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "access",
+     "label": "Chromatin access",
+     "kind": "process",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "expr",
+     "label": "Gene expression",
+     "kind": "process",
+     "row": 5,
+     "col": 1
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 6,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "smarca4",
+     "to": "baf",
+     "kind": "activates"
+    },
+    {
+     "from": "smarcb1",
+     "to": "baf",
+     "kind": "activates"
+    },
+    {
+     "from": "arid1a",
+     "to": "baf",
+     "kind": "activates"
+    },
+    {
+     "from": "pbrm1",
+     "to": "baf",
+     "kind": "activates"
+    },
+    {
+     "from": "arid2",
+     "to": "baf",
+     "kind": "activates"
+    },
+    {
+     "from": "baf",
+     "to": "remodel",
+     "kind": "activates"
+    },
+    {
+     "from": "remodel",
+     "to": "access",
+     "kind": "activates"
+    },
+    {
+     "from": "access",
+     "to": "expr",
+     "kind": "activates"
+    },
+    {
+     "from": "expr",
+     "to": "prolif",
+     "kind": "inhibits"
+    }
+   ]
+  },
+  {
+   "id": "histone-methylation",
+   "name": "Histone methylation",
+   "context": "Writers (PRC2 and COMPASS) and the eraser KDM6A set histone-methylation marks that switch ge…",
+   "nodes": [
+    {
+     "id": "ezh2",
+     "gene": "EZH2",
+     "label": "EZH2",
+     "kind": "other",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "suz12",
+     "gene": "SUZ12",
+     "label": "SUZ12",
+     "kind": "other",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "kmt2a",
+     "gene": "KMT2A",
+     "label": "KMT2A",
+     "kind": "other",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "setd2",
+     "gene": "SETD2",
+     "label": "SETD2",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "kdm6a",
+     "gene": "KDM6A",
+     "label": "KDM6A",
+     "kind": "other",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "kmt2c",
+     "gene": "KMT2C",
+     "label": "KMT2C",
+     "kind": "other",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "nsd1",
+     "gene": "NSD1",
+     "label": "NSD1",
+     "kind": "other",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "h3k27me3",
+     "label": "H3K27me3",
+     "kind": "process",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "h3k4me",
+     "label": "H3K4me",
+     "kind": "process",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "h3k36me",
+     "label": "H3K36me",
+     "kind": "process",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "repression",
+     "label": "Gene repression",
+     "kind": "process",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "activation",
+     "label": "Gene activation",
+     "kind": "process",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "output",
+     "label": "Gene expression",
+     "kind": "process",
+     "row": 4,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "ezh2",
+     "to": "h3k27me3",
+     "kind": "activates"
+    },
+    {
+     "from": "suz12",
+     "to": "h3k27me3",
+     "kind": "activates"
+    },
+    {
+     "from": "kdm6a",
+     "to": "h3k27me3",
+     "kind": "inhibits"
+    },
+    {
+     "from": "kmt2a",
+     "to": "h3k4me",
+     "kind": "activates"
+    },
+    {
+     "from": "kmt2c",
+     "to": "h3k4me",
+     "kind": "activates"
+    },
+    {
+     "from": "setd2",
+     "to": "h3k36me",
+     "kind": "activates"
+    },
+    {
+     "from": "nsd1",
+     "to": "h3k36me",
+     "kind": "activates"
+    },
+    {
+     "from": "h3k27me3",
+     "to": "repression",
+     "kind": "activates"
+    },
+    {
+     "from": "h3k4me",
+     "to": "activation",
+     "kind": "activates"
+    },
+    {
+     "from": "h3k36me",
+     "to": "activation",
+     "kind": "activates"
+    },
+    {
+     "from": "repression",
+     "to": "output",
+     "kind": "inhibits"
+    },
+    {
+     "from": "activation",
+     "to": "output",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "wnt-bcatenin",
+   "name": "WNT / beta-catenin",
+   "context": "Canonical WNT signalling",
+   "nodes": [
+    {
+     "id": "wnt",
+     "label": "WNT",
+     "kind": "ligand",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "rnf43",
+     "gene": "RNF43",
+     "label": "RNF43",
+     "kind": "receptor",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "fzd",
+     "label": "FZD/LRP",
+     "kind": "receptor",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "apc",
+     "gene": "APC",
+     "label": "APC",
+     "kind": "adaptor",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "dc",
+     "label": "Destruction cplx",
+     "kind": "complex",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "amer1",
+     "gene": "AMER1",
+     "label": "AMER1",
+     "kind": "adaptor",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "cdh1",
+     "gene": "CDH1",
+     "label": "CDH1",
+     "kind": "receptor",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "ctnnb1",
+     "gene": "CTNNB1",
+     "label": "CTNNB1",
+     "kind": "adaptor",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "ctnna1",
+     "gene": "CTNNA1",
+     "label": "CTNNA1",
+     "kind": "adaptor",
+     "row": 3,
+     "col": 2
+    },
+    {
+     "id": "tcf",
+     "label": "TCF/LEF",
+     "kind": "tf",
+     "row": 4,
+     "col": 1
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 5,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "wnt",
+     "to": "fzd",
+     "kind": "activates"
+    },
+    {
+     "from": "rnf43",
+     "to": "fzd",
+     "kind": "inhibits"
+    },
+    {
+     "from": "fzd",
+     "to": "dc",
+     "kind": "inhibits"
+    },
+    {
+     "from": "apc",
+     "to": "dc",
+     "kind": "activates"
+    },
+    {
+     "from": "amer1",
+     "to": "dc",
+     "kind": "activates"
+    },
+    {
+     "from": "dc",
+     "to": "ctnnb1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cdh1",
+     "to": "ctnnb1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "ctnna1",
+     "to": "ctnnb1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "ctnnb1",
+     "to": "tcf",
+     "kind": "activates"
+    },
+    {
+     "from": "tcf",
+     "to": "prolif",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "cellcycle-g1s",
+   "name": "G1/S cell-cycle control",
+   "context": "CCND3-CDK4 phosphorylates RB1, releasing E2F to drive S-phase entry; CDKN2A and CDKN1B restr…",
+   "nodes": [
+    {
+     "id": "ccnd3",
+     "gene": "CCND3",
+     "label": "CCND3",
+     "kind": "other",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "cdkn2a",
+     "gene": "CDKN2A",
+     "label": "CDKN2A",
+     "kind": "other",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "cdk4",
+     "gene": "CDK4",
+     "label": "CDK4",
+     "kind": "kinase",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "cdkn1b",
+     "gene": "CDKN1B",
+     "label": "CDKN1B",
+     "kind": "other",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "rb1",
+     "gene": "RB1",
+     "label": "RB1",
+     "kind": "other",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "e2f",
+     "label": "E2F",
+     "kind": "tf",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "sphase",
+     "label": "S-phase entry",
+     "kind": "process",
+     "row": 4,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "ccnd3",
+     "to": "cdk4",
+     "kind": "activates"
+    },
+    {
+     "from": "cdkn2a",
+     "to": "cdk4",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cdkn1b",
+     "to": "cdk4",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cdk4",
+     "to": "rb1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "rb1",
+     "to": "e2f",
+     "kind": "inhibits"
+    },
+    {
+     "from": "e2f",
+     "to": "sphase",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "ddr-p53",
+   "name": "DNA damage response → p53",
+   "context": "DNA damage checkpoint: ATM/ATR sense breaks and replication stress, signalling through CHEK2…",
+   "nodes": [
+    {
+     "id": "dmg",
+     "label": "DNA damage",
+     "kind": "process",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "atm",
+     "gene": "ATM",
+     "label": "ATM",
+     "kind": "kinase",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "atr",
+     "label": "ATR",
+     "kind": "kinase",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "chek2",
+     "gene": "CHEK2",
+     "label": "CHEK2",
+     "kind": "kinase",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "tp53",
+     "gene": "TP53",
+     "label": "TP53",
+     "kind": "tf",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "mdm2",
+     "gene": "MDM2",
+     "label": "MDM2",
+     "kind": "other",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "ppm1d",
+     "gene": "PPM1D",
+     "label": "PPM1D (WIP1)",
+     "kind": "other",
+     "row": 4,
+     "col": 3
+    },
+    {
+     "id": "apop",
+     "label": "Apoptosis",
+     "kind": "process",
+     "row": 5,
+     "col": 0
+    },
+    {
+     "id": "arrest",
+     "label": "Cell-cycle arrest",
+     "kind": "process",
+     "row": 5,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "dmg",
+     "to": "atm",
+     "kind": "activates"
+    },
+    {
+     "from": "dmg",
+     "to": "atr",
+     "kind": "activates"
+    },
+    {
+     "from": "atm",
+     "to": "chek2",
+     "kind": "activates"
+    },
+    {
+     "from": "atm",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "atr",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "chek2",
+     "to": "tp53",
+     "kind": "activates"
+    },
+    {
+     "from": "tp53",
+     "to": "apop",
+     "kind": "activates"
+    },
+    {
+     "from": "tp53",
+     "to": "arrest",
+     "kind": "activates"
+    },
+    {
+     "from": "tp53",
+     "to": "mdm2",
+     "kind": "activates"
+    },
+    {
+     "from": "mdm2",
+     "to": "tp53",
+     "kind": "inhibits"
+    },
+    {
+     "from": "tp53",
+     "to": "ppm1d",
+     "kind": "activates"
+    },
+    {
+     "from": "ppm1d",
+     "to": "tp53",
+     "kind": "inhibits"
+    }
+   ]
+  },
+  {
+   "id": "mmr-fanconi",
+   "name": "DNA repair: mismatch repair & homologous rec…",
+   "context": "Loss-of-function DNA-repair genes grouped by module: mismatch repair (MMR); homologous recom…",
+   "nodes": [
+    {
+     "id": "MLH1",
+     "gene": "MLH1",
+     "label": "MLH1",
+     "kind": "other",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "MSH2",
+     "gene": "MSH2",
+     "label": "MSH2",
+     "kind": "other",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "MSH6",
+     "gene": "MSH6",
+     "label": "MSH6",
+     "kind": "other",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "mmr",
+     "label": "Mismatch repair",
+     "kind": "process",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "PALB2",
+     "gene": "PALB2",
+     "label": "PALB2",
+     "kind": "adaptor",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "XRCC3",
+     "gene": "XRCC3",
+     "label": "XRCC3",
+     "kind": "other",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "BRIP1",
+     "gene": "BRIP1",
+     "label": "BRIP1",
+     "kind": "other",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "FANCA",
+     "gene": "FANCA",
+     "label": "FANCA",
+     "kind": "other",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "FANCC",
+     "gene": "FANCC",
+     "label": "FANCC",
+     "kind": "other",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "BLM",
+     "gene": "BLM",
+     "label": "BLM",
+     "kind": "other",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "hrfa",
+     "label": "HR / Fanconi",
+     "kind": "process",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "ERCC2",
+     "gene": "ERCC2",
+     "label": "ERCC2",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "ner",
+     "label": "Excision repair",
+     "kind": "process",
+     "row": 3,
+     "col": 3
+    },
+    {
+     "id": "genome",
+     "label": "Genome stability",
+     "kind": "process",
+     "row": 4,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "MLH1",
+     "to": "mmr",
+     "kind": "activates"
+    },
+    {
+     "from": "MSH2",
+     "to": "mmr",
+     "kind": "activates"
+    },
+    {
+     "from": "MSH6",
+     "to": "mmr",
+     "kind": "activates"
+    },
+    {
+     "from": "PALB2",
+     "to": "hrfa",
+     "kind": "activates"
+    },
+    {
+     "from": "XRCC3",
+     "to": "hrfa",
+     "kind": "activates"
+    },
+    {
+     "from": "BRIP1",
+     "to": "hrfa",
+     "kind": "activates"
+    },
+    {
+     "from": "FANCA",
+     "to": "hrfa",
+     "kind": "activates"
+    },
+    {
+     "from": "FANCC",
+     "to": "hrfa",
+     "kind": "activates"
+    },
+    {
+     "from": "BLM",
+     "to": "hrfa",
+     "kind": "activates"
+    },
+    {
+     "from": "ERCC2",
+     "to": "ner",
+     "kind": "activates"
+    },
+    {
+     "from": "mmr",
+     "to": "genome",
+     "kind": "activates"
+    },
+    {
+     "from": "hrfa",
+     "to": "genome",
+     "kind": "activates"
+    },
+    {
+     "from": "ner",
+     "to": "genome",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "nrf2-keap1",
+   "name": "NRF2/KEAP1 oxidative-stress response",
+   "context": "Under stress, oxidised KEAP1 releases NFE2L2 (NRF2) to drive antioxidant genes; KEAP1 loss o…",
+   "nodes": [
+    {
+     "id": "ros",
+     "label": "Oxidative stress",
+     "kind": "process",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "keap1",
+     "gene": "KEAP1",
+     "label": "KEAP1",
+     "kind": "adaptor",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "cul3",
+     "label": "CUL3",
+     "kind": "complex",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "nrf2",
+     "gene": "NFE2L2",
+     "label": "NFE2L2 (NRF2)",
+     "kind": "tf",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "are",
+     "label": "Antioxidant genes",
+     "kind": "process",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "survival",
+     "label": "Cell survival",
+     "kind": "process",
+     "row": 4,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "ros",
+     "to": "keap1",
+     "kind": "inhibits"
+    },
+    {
+     "from": "keap1",
+     "to": "nrf2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cul3",
+     "to": "nrf2",
+     "kind": "inhibits"
+    },
+    {
+     "from": "nrf2",
+     "to": "are",
+     "kind": "activates"
+    },
+    {
+     "from": "are",
+     "to": "survival",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "gprotein-hippo",
+   "name": "G-protein & Hippo signalling",
+   "context": "Activating GNAQ/GNAS/GNB1 and loss of NF2 (merlin) both converge on YAP/TAZ-TEAD to drive pr…",
+   "nodes": [
+    {
+     "id": "gnaq",
+     "gene": "GNAQ",
+     "label": "GNAQ",
+     "kind": "other",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "gnas",
+     "gene": "GNAS",
+     "label": "GNAS",
+     "kind": "other",
+     "row": 0,
+     "col": 1
+    },
+    {
+     "id": "gnb1",
+     "gene": "GNB1",
+     "label": "GNB1",
+     "kind": "other",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "nf2",
+     "gene": "NF2",
+     "label": "NF2 (merlin)",
+     "kind": "other",
+     "row": 0,
+     "col": 3
+    },
+    {
+     "id": "plcb",
+     "label": "PLCβ",
+     "kind": "other",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "pka",
+     "label": "cAMP / PKA",
+     "kind": "kinase",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "pi3k",
+     "label": "PI3K",
+     "kind": "kinase",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "mst",
+     "label": "MST1/2",
+     "kind": "kinase",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "pkc",
+     "label": "PKC",
+     "kind": "kinase",
+     "row": 4,
+     "col": 0
+    },
+    {
+     "id": "lats",
+     "label": "LATS1/2",
+     "kind": "kinase",
+     "row": 4,
+     "col": 3
+    },
+    {
+     "id": "yap",
+     "label": "YAP/TAZ",
+     "kind": "complex",
+     "row": 6,
+     "col": 2
+    },
+    {
+     "id": "tead",
+     "label": "TEAD",
+     "kind": "tf",
+     "row": 8,
+     "col": 2
+    },
+    {
+     "id": "prolif",
+     "label": "Proliferation",
+     "kind": "process",
+     "row": 9,
+     "col": 1
+    }
+   ],
+   "edges": [
+    {
+     "from": "gnaq",
+     "to": "plcb",
+     "kind": "activates"
+    },
+    {
+     "from": "plcb",
+     "to": "pkc",
+     "kind": "activates"
+    },
+    {
+     "from": "gnas",
+     "to": "pka",
+     "kind": "activates"
+    },
+    {
+     "from": "gnb1",
+     "to": "pi3k",
+     "kind": "activates"
+    },
+    {
+     "from": "mst",
+     "to": "lats",
+     "kind": "activates"
+    },
+    {
+     "from": "lats",
+     "to": "yap",
+     "kind": "inhibits"
+    },
+    {
+     "from": "nf2",
+     "to": "yap",
+     "kind": "inhibits"
+    },
+    {
+     "from": "gnaq",
+     "to": "yap",
+     "kind": "activates"
+    },
+    {
+     "from": "yap",
+     "to": "tead",
+     "kind": "activates"
+    },
+    {
+     "from": "tead",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "pkc",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "pka",
+     "to": "prolif",
+     "kind": "activates"
+    },
+    {
+     "from": "pi3k",
+     "to": "prolif",
+     "kind": "activates"
+    }
+   ]
+  },
+  {
+   "id": "transcription-repressors",
+   "name": "Transcriptional regulators & repressors",
+   "context": "MYC-MAX activators and repressive partners, lineage transcription factors, Polycomb corepres…",
+   "nodes": [
+    {
+     "id": "fbxw7",
+     "gene": "FBXW7",
+     "label": "FBXW7",
+     "kind": "other",
+     "row": 0,
+     "col": 0
+    },
+    {
+     "id": "spop",
+     "gene": "SPOP",
+     "label": "SPOP",
+     "kind": "other",
+     "row": 0,
+     "col": 2
+    },
+    {
+     "id": "mycn",
+     "gene": "MYCN",
+     "label": "MYCN",
+     "kind": "tf",
+     "row": 1,
+     "col": 0
+    },
+    {
+     "id": "max",
+     "gene": "MAX",
+     "label": "MAX",
+     "kind": "tf",
+     "row": 1,
+     "col": 1
+    },
+    {
+     "id": "mga",
+     "gene": "MGA",
+     "label": "MGA",
+     "kind": "tf",
+     "row": 1,
+     "col": 2
+    },
+    {
+     "id": "cic",
+     "gene": "CIC",
+     "label": "CIC",
+     "kind": "tf",
+     "row": 1,
+     "col": 3
+    },
+    {
+     "id": "bcor",
+     "gene": "BCOR",
+     "label": "BCOR",
+     "kind": "tf",
+     "row": 2,
+     "col": 0
+    },
+    {
+     "id": "bcorl1",
+     "gene": "BCORL1",
+     "label": "BCORL1",
+     "kind": "tf",
+     "row": 2,
+     "col": 1
+    },
+    {
+     "id": "ctcf",
+     "gene": "CTCF",
+     "label": "CTCF",
+     "kind": "tf",
+     "row": 2,
+     "col": 2
+    },
+    {
+     "id": "foxp1",
+     "gene": "FOXP1",
+     "label": "FOXP1",
+     "kind": "tf",
+     "row": 2,
+     "col": 3
+    },
+    {
+     "id": "pax5",
+     "gene": "PAX5",
+     "label": "PAX5",
+     "kind": "tf",
+     "row": 3,
+     "col": 0
+    },
+    {
+     "id": "mef2b",
+     "gene": "MEF2B",
+     "label": "MEF2B",
+     "kind": "tf",
+     "row": 3,
+     "col": 1
+    },
+    {
+     "id": "diff",
+     "label": "Differentiation",
+     "kind": "process",
+     "row": 4,
+     "col": 0
+    },
+    {
+     "id": "geneexpr",
+     "label": "Gene expression",
+     "kind": "process",
+     "row": 4,
+     "col": 2
+    }
+   ],
+   "edges": [
+    {
+     "from": "fbxw7",
+     "to": "mycn",
+     "kind": "inhibits"
+    },
+    {
+     "from": "spop",
+     "to": "geneexpr",
+     "kind": "inhibits"
+    },
+    {
+     "from": "max",
+     "to": "mycn",
+     "kind": "activates"
+    },
+    {
+     "from": "max",
+     "to": "mga",
+     "kind": "activates"
+    },
+    {
+     "from": "mycn",
+     "to": "geneexpr",
+     "kind": "activates"
+    },
+    {
+     "from": "mga",
+     "to": "geneexpr",
+     "kind": "inhibits"
+    },
+    {
+     "from": "cic",
+     "to": "geneexpr",
+     "kind": "inhibits"
+    },
+    {
+     "from": "bcor",
+     "to": "geneexpr",
+     "kind": "inhibits"
+    },
+    {
+     "from": "bcorl1",
+     "to": "geneexpr",
+     "kind": "inhibits"
+    },
+    {
+     "from": "ctcf",
+     "to": "geneexpr",
+     "kind": "inhibits"
+    },
+    {
+     "from": "foxp1",
+     "to": "geneexpr",
+     "kind": "inhibits"
+    },
+    {
+     "from": "mef2b",
+     "to": "geneexpr",
+     "kind": "activates"
+    },
+    {
+     "from": "pax5",
+     "to": "diff",
+     "kind": "activates"
+    }
+   ]
+  }
+ ],
+ "geneIndex": [
+  {
+   "gene": "AKT1",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Breast, endometrial",
+   "note": "E17K hotspot drives constitutive membrane recruitment and activation."
+  },
+  {
+   "gene": "ALK",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Lung, neuroblastoma, ALCL",
+   "note": "Oncogenic fusions (EML4-ALK) or activating point mutations drive signalling."
+  },
+  {
+   "gene": "AMER1",
+   "pathwayIds": [
+    "wnt-bcatenin"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Wilms tumour, colorectal",
+   "note": "WTX; supports the destruction complex; loss stabilises beta-catenin."
+  },
+  {
+   "gene": "APC",
+   "pathwayIds": [
+    "wnt-bcatenin"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Colorectal (FAP), desmoid",
+   "note": "Destruction-complex scaffold degrading beta-catenin; loss stabilises it."
+  },
+  {
+   "gene": "ARAF",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Histiocytosis, lung",
+   "note": "RAF kinase; activating mutations phosphorylate MEK, driving ERK."
+  },
+  {
+   "gene": "ARID1A",
+   "pathwayIds": [
+    "swi-snf"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Ovarian clear cell, endometrial, gastric",
+   "note": "BAF DNA-targeting subunit; the most commonly mutated SWI/SNF gene across cancers."
+  },
+  {
+   "gene": "ARID2",
+   "pathwayIds": [
+    "swi-snf"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Hepatocellular carcinoma, melanoma",
+   "note": "PBAF-specific subunit; loss-of-function mutations impair nucleosome remodelling."
+  },
+  {
+   "gene": "ASXL1",
+   "pathwayIds": [
+    "epigenetic-regulators"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "MDS, CMML, AML, myelofibrosis",
+   "note": "Last-exon truncations; altered ASXL1-BAP1 activity, loss of H3K27me3; adverse risk"
+  },
+  {
+   "gene": "ATM",
+   "pathwayIds": [
+    "p53-dna-damage",
+    "apoptosis-survival",
+    "cellcycle-nuclear",
+    "ddr-p53"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "CLL (del 11q), mantle cell lymphoma",
+   "note": "11q22 deletion plus mutation of the other allele removes the sensor upstream of p53"
+  },
+  {
+   "gene": "B2M",
+   "pathwayIds": [
+    "immune-evasion"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "DLBCL, Hodgkin lymphoma, PMBCL",
+   "note": "Biallelic loss removes surface MHC class I, so CD8 T cells no longer see the tumour"
+  },
+  {
+   "gene": "BCL2",
+   "pathwayIds": [
+    "apoptosis-survival"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Follicular, GCB-DLBCL, high-grade B-cell",
+   "note": "t(14;18) blocks intrinsic apoptosis; BH3-groove G101V/D103Y is venetoclax resistance in CLL"
+  },
+  {
+   "gene": "BCL6",
+   "pathwayIds": [
+    "apoptosis-survival"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "DLBCL, follicular",
+   "note": "Translocation or promoter mutation sustains expression, repressing TP53 and PRDM1"
+  },
+  {
+   "gene": "BCOR",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "AML, sarcoma, retinoblastoma",
+   "note": "PRC1.1 corepressor and BCL6 partner; mutation relieves target-gene repression."
+  },
+  {
+   "gene": "BCORL1",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "AML, MDS",
+   "note": "Transcriptional corepressor akin to BCOR; myeloid tumour-suppressor role."
+  },
+  {
+   "gene": "BIRC3",
+   "pathwayIds": [
+    "bcr-nfkb"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "CLL, splenic/nodal MZL, MALT lymphoma",
+   "note": "Truncation loses NIK degradation (non-canonical NF-kB on); t(11;18) fusion is activating"
+  },
+  {
+   "gene": "BLM",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Bloom syndrome; broad risk",
+   "note": "RecQ helicase dissolving recombination intermediates; limits sister-chromatid exchange."
+  },
+  {
+   "gene": "BRAF",
+   "pathwayIds": [
+    "ras-mapk"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Hairy cell leukaemia, Langerhans/Erdheim-Chester",
+   "note": "V600E gives RAS-independent kinase activity; defining lesion of hairy cell leukaemia"
+  },
+  {
+   "gene": "BRIP1",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Ovarian; Fanconi anaemia",
+   "note": "FANCJ helicase; BRCA1 partner in HR and interstrand-crosslink repair."
+  },
+  {
+   "gene": "BTK",
+   "pathwayIds": [
+    "bcr-nfkb"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "CLL, Waldenstrom (on BTK inhibitor)",
+   "note": "Not a primary driver; C481S is acquired resistance blocking covalent ibrutinib binding"
+  },
+  {
+   "gene": "CALR",
+   "pathwayIds": [
+    "jak-stat"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "ET, myelofibrosis",
+   "note": "Exon 9 frameshift makes a novel C-terminus that binds and activates MPL"
+  },
+  {
+   "gene": "CARD11",
+   "pathwayIds": [
+    "bcr-nfkb",
+    "tcr-ptcl"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "ABC-DLBCL, primary cutaneous",
+   "note": "Coiled-coil mutations give BTK-independent CBM assembly and NF-kB activity"
+  },
+  {
+   "gene": "CBL",
+   "pathwayIds": [
+    "ras-mapk"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "JMML, CMML, MDS/MPN overlap, AML",
+   "note": "Loss of E3 ligase with retained adaptor: dominant-negative, prolonged KIT/FLT3 signalling"
+  },
+  {
+   "gene": "CCND1",
+   "pathwayIds": [
+    "cellcycle-nuclear"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Mantle cell lymphoma; plasma cell myeloma",
+   "note": "t(11;14) IGH::CCND1 overexpression; with CDK4/6 phosphorylates RB and releases E2F."
+  },
+  {
+   "gene": "CCND3",
+   "pathwayIds": [
+    "cellcycle-g1s"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Burkitt lymphoma, DLBCL",
+   "note": "D-type cyclin; activating mutations stabilise CDK4 activity."
+  },
+  {
+   "gene": "CD58",
+   "pathwayIds": [
+    "immune-evasion"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "DLBCL, primary CNS/mediastinal, classic Hodgkin",
+   "note": "CD2 ligand; loss removes T- and NK-cell activation, often co-selected with B2M loss"
+  },
+  {
+   "gene": "CD79A",
+   "pathwayIds": [
+    "bcr-nfkb"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "DLBCL (ABC subtype)",
+   "note": "ITAM mutations sustain chronic active BCR signalling; less common than CD79B"
+  },
+  {
+   "gene": "CD79B",
+   "pathwayIds": [
+    "bcr-nfkb"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "ABC-DLBCL, primary CNS/testicular",
+   "note": "ITAM Tyr196: impaired internalisation, loss of Lyn feedback, chronic active BCR"
+  },
+  {
+   "gene": "CDH1",
+   "pathwayIds": [
+    "wnt-bcatenin"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Diffuse gastric, lobular breast",
+   "note": "E-cadherin sequesters beta-catenin at adherens junctions; loss frees the pool."
+  },
+  {
+   "gene": "CDK4",
+   "pathwayIds": [
+    "cellcycle-g1s"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Melanoma, sarcoma, GBM",
+   "note": "CDK; activation/amplification phosphorylates and inactivates RB1."
+  },
+  {
+   "gene": "CDKN1B",
+   "pathwayIds": [
+    "cellcycle-g1s"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "MCL, MEN4",
+   "note": "p27 CDK inhibitor; loss relieves the brake on cyclin-D/CDK4."
+  },
+  {
+   "gene": "CDKN2A",
+   "pathwayIds": [
+    "p53-dna-damage",
+    "apoptosis-survival",
+    "cellcycle-nuclear",
+    "cellcycle-g1s"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Blastoid mantle cell, DLBCL, transformed FL, ALL",
+   "note": "9p21 deletion loses p16INK4a (frees CDK4/6, dominant arm) and p14ARF (frees MDM2)"
+  },
+  {
+   "gene": "CEBPA",
+   "pathwayIds": [
+    "transcription-differentiation"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "AML (bZIP in-frame, favourable); germline AML",
+   "note": "In-frame bZIP mutation is dominant-negative, blocking granulocytic maturation"
+  },
+  {
+   "gene": "CHEK2",
+   "pathwayIds": [
+    "ddr-p53"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Breast, prostate, leukaemia risk",
+   "note": "Checkpoint kinase phosphorylating and stabilising p53 downstream of ATM."
+  },
+  {
+   "gene": "CIC",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Oligodendroglioma, round-cell sarcoma",
+   "note": "Represses ETV1/4/5; RAS-MAPK inactivates it; fusions drive round-cell sarcoma."
+  },
+  {
+   "gene": "CIITA",
+   "pathwayIds": [
+    "immune-evasion"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "PMBCL, Hodgkin lymphoma, DLBCL",
+   "note": "Master activator of MHC class II; lost by deletion, mutation or 3' rearrangement"
+  },
+  {
+   "gene": "CREBBP",
+   "pathwayIds": [
+    "epigenetic-regulators"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Follicular, DLBCL, relapsed ALL",
+   "note": "Acetyltransferase loss; unopposed BCL6, reduced MHC class II"
+  },
+  {
+   "gene": "CSF3R",
+   "pathwayIds": [
+    "jak-stat"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Chronic neutrophilic leukaemia, atypical CML",
+   "note": "T618I drives ligand-independent receptor signalling through JAK"
+  },
+  {
+   "gene": "CTCF",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Endometrial, breast",
+   "note": "Insulator/architectural factor; can activate or repress by locus; loss deregulates genes."
+  },
+  {
+   "gene": "CTNNA1",
+   "pathwayIds": [
+    "wnt-bcatenin"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Diffuse gastric",
+   "note": "Alpha-catenin anchors beta-catenin at junctions; loss releases it."
+  },
+  {
+   "gene": "CTNNB1",
+   "pathwayIds": [
+    "wnt-bcatenin"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Hepatocellular, colorectal, endometrial",
+   "note": "Beta-catenin; exon 3 mutations block degradation, giving nuclear TCF/LEF activity."
+  },
+  {
+   "gene": "DNMT3A",
+   "pathwayIds": [
+    "epigenetic-regulators",
+    "tcr-ptcl"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "AML, clonal haematopoiesis, T-cell lymphoma",
+   "note": "R882H acts dominant-negative; loss of new DNA methylation"
+  },
+  {
+   "gene": "EGFR",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Lung adenocarcinoma, glioblastoma",
+   "note": "Activating kinase-domain mutations and amplification drive RAS-MAPK signalling."
+  },
+  {
+   "gene": "EP300",
+   "pathwayIds": [
+    "epigenetic-regulators"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "DLBCL, follicular lymphoma, relapsed B-ALL",
+   "note": "CREBBP paralogue (p300); loss reduces enhancer H3K27 acetylation"
+  },
+  {
+   "gene": "ERBB2",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Breast, gastric, lung",
+   "note": "HER2 amplification or activating mutation; dimerises to fire receptor signalling."
+  },
+  {
+   "gene": "ERBB3",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Breast, gastric, colorectal",
+   "note": "Kinase-impaired HER3 signals as a heterodimer partner, chiefly with HER2."
+  },
+  {
+   "gene": "ERBB4",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Melanoma; others",
+   "note": "Activating mutations in melanoma, but some isoforms are tumour-suppressive."
+  },
+  {
+   "gene": "ERCC2",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Xeroderma pigmentosum; skin",
+   "note": "XPD helicase within TFIIH; nucleotide excision repair of bulky and UV lesions."
+  },
+  {
+   "gene": "ETV6",
+   "pathwayIds": [
+    "transcription-differentiation"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "B-ALL, MDS, AML, MPN, germline thrombocytopenia",
+   "note": "ETS repressor needed for marrow haematopoiesis; label excludes ETV6 fusions"
+  },
+  {
+   "gene": "EZH2",
+   "pathwayIds": [
+    "epigenetic-regulators",
+    "histone-methylation"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Gain in follicular/DLBCL; loss in MDS, MPN",
+   "note": "Y646 gain-of-function in germinal-centre lymphoma; loss-of-function in myeloid disease"
+  },
+  {
+   "gene": "FANCA",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Fanconi anaemia; AML risk",
+   "note": "Fanconi core complex; drives FANCD2 monoubiquitination to launch crosslink repair."
+  },
+  {
+   "gene": "FANCC",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Fanconi anaemia; AML risk",
+   "note": "Fanconi core complex subunit; needed for FANCD2 activation."
+  },
+  {
+   "gene": "FBXW7",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "T-ALL, colorectal",
+   "note": "SCF E3 substrate-adaptor degrading MYC/MYCN, Notch, cyclin E and Jun."
+  },
+  {
+   "gene": "FGFR2",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Gastric, endometrial, cholangiocarcinoma",
+   "note": "Amplification, activating mutations and fusions signal to RAS-MAPK."
+  },
+  {
+   "gene": "FGFR3",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Bladder, multiple myeloma",
+   "note": "Activating mutations and fusions (FGFR3-TACC3); common in bladder cancer."
+  },
+  {
+   "gene": "FLT3",
+   "pathwayIds": [
+    "ras-mapk"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "AML",
+   "note": "Internal tandem duplication or D835 change drives constitutive signalling"
+  },
+  {
+   "gene": "FOXO1",
+   "pathwayIds": [
+    "pi3k-akt",
+    "burkitt-myc"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Burkitt, GCB-DLBCL, follicular",
+   "note": "N-terminal T24/S22 mutants stay nuclear (dark-zone, pro-survival); forkhead mutants lose activity"
+  },
+  {
+   "gene": "FOXP1",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "ABC-DLBCL, MALT lymphoma",
+   "note": "B-cell repressor; in ABC-DLBCL silences pro-apoptotic genes to drive tumour survival."
+  },
+  {
+   "gene": "GATA2",
+   "pathwayIds": [
+    "transcription-differentiation"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "AML, MDS, germline GATA2 deficiency",
+   "note": "Germline loss causes GATA2 deficiency; somatic zinc-finger-1 changes co-occur with CEBPA AML"
+  },
+  {
+   "gene": "GNA13",
+   "pathwayIds": [
+    "gc-confinement"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "GCB-DLBCL; Burkitt lymphoma",
+   "note": "Loss disables the Ga13-ARHGEF1-RHOA brake: cells leave the germinal centre and AKT is released."
+  },
+  {
+   "gene": "GNAQ",
+   "pathwayIds": [
+    "gprotein-hippo"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Uveal melanoma; blue naevi",
+   "note": "Activating Q209 mutation drives PLCβ/PKC and switches on YAP/TAZ."
+  },
+  {
+   "gene": "GNAS",
+   "pathwayIds": [
+    "gprotein-hippo"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Pituitary/thyroid; McCune-Albright",
+   "note": "R201 mutation gives constitutive Gαs-adenylyl cyclase-cAMP-PKA signalling."
+  },
+  {
+   "gene": "GNB1",
+   "pathwayIds": [
+    "gprotein-hippo"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Myeloid & lymphoid neoplasms",
+   "note": "Gβ1 K57 mutations drive aberrant Gβγ signalling to PI3K and MAPK."
+  },
+  {
+   "gene": "HRAS",
+   "pathwayIds": [
+    "rtk-ras",
+    "ras-mapk-ext"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Bladder, head & neck, thyroid",
+   "note": "Codon 12/13/61 mutations lock RAS in the active GTP state, driving MEK-ERK."
+  },
+  {
+   "gene": "ID3",
+   "pathwayIds": [
+    "burkitt-myc"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Burkitt lymphoma",
+   "note": "Normally binds and inactivates TCF3; helix-loop-helix mutations abolish this, releasing TCF3."
+  },
+  {
+   "gene": "IDH1",
+   "pathwayIds": [
+    "epigenetic-regulators"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "AML, MDS",
+   "note": "R132 neomorphic enzyme makes D-2-hydroxyglutarate, which inhibits TET2"
+  },
+  {
+   "gene": "IDH2",
+   "pathwayIds": [
+    "epigenetic-regulators",
+    "tcr-ptcl"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "AML, MDS, angioimmunoblastic T-cell lymphoma",
+   "note": "R140/R172 neomorphic; D-2-hydroxyglutarate blocks TET2 demethylation"
+  },
+  {
+   "gene": "IRF4",
+   "pathwayIds": [
+    "tlr-il1r-myd88-nfkb",
+    "immune-evasion"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Myeloma, ABC-DLBCL, LBCL with IRF4-R, Hodgkin",
+   "note": "Deregulated by over-expression or IGH::IRF4 rather than point mutation; low IRF4 in CLL"
+  },
+  {
+   "gene": "IRF8",
+   "pathwayIds": [
+    "immune-evasion"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "DLBCL, follicular, Burkitt; myeloid by silencing",
+   "note": "Germinal-centre hotspots impair MHC class II presentation; direction of effect not settled"
+  },
+  {
+   "gene": "IRS2",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Colorectal, breast",
+   "note": "Adaptor coupling IGF/insulin receptors to PI3K activation."
+  },
+  {
+   "gene": "JAK2",
+   "pathwayIds": [
+    "jak-stat",
+    "il4-jak-stat6"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "PV, ET, myelofibrosis",
+   "note": "V617F (exon 14) relieves pseudokinase autoinhibition; exon 12 same route, PV only"
+  },
+  {
+   "gene": "KDM6A",
+   "pathwayIds": [
+    "histone-methylation"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "T-ALL, myeloma, bladder carcinoma",
+   "note": "H3K27me3 demethylase (UTX) opposing PRC2; loss is tumour-suppressive."
+  },
+  {
+   "gene": "KDR",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Angiosarcoma; tumour angiogenesis",
+   "note": "VEGFR2; drives angiogenesis; activating mutations reported in angiosarcoma."
+  },
+  {
+   "gene": "KEAP1",
+   "pathwayIds": [
+    "nrf2-keap1"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Lung adenocarcinoma, NSCLC, HNSCC",
+   "note": "CUL3 substrate adaptor degrading NRF2; loss stabilises antioxidant output."
+  },
+  {
+   "gene": "KIT",
+   "pathwayIds": [
+    "ras-mapk",
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Systemic mastocytosis, core-binding factor AML",
+   "note": "Exon 17 D816V (imatinib-resistant) or exon 8/N822K: ligand-independent kinase activity"
+  },
+  {
+   "gene": "KMT2A",
+   "pathwayIds": [
+    "histone-methylation"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "AML, ALL (MLL-rearranged)",
+   "note": "H3K4 methyltransferase (COMPASS); MLL fusions drive acute leukaemia."
+  },
+  {
+   "gene": "KMT2C",
+   "pathwayIds": [
+    "histone-methylation"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "AML/MDS, many carcinomas",
+   "note": "H3K4 mono-methyltransferase at enhancers; inactivating loss (7q)."
+  },
+  {
+   "gene": "KMT2D",
+   "pathwayIds": [
+    "epigenetic-regulators"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Follicular, DLBCL, mantle cell",
+   "note": "Loss of enhancer H3K4 mono-methylation; best characterised in germinal-centre B cells"
+  },
+  {
+   "gene": "KRAS",
+   "pathwayIds": [
+    "ras-mapk"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "JMML, CMML, AML, MDS, myeloma",
+   "note": "G12/G13/Q61 impair GTP hydrolysis, so RAF/MEK/ERK stays on"
+  },
+  {
+   "gene": "LZTR1",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Glioblastoma, schwannomatosis",
+   "note": "CUL3 E3 adaptor degrading RAS and RIT1, so loss activates MAPK."
+  },
+  {
+   "gene": "MAP2K1",
+   "pathwayIds": [
+    "ras-mapk"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Hairy cell leukaemia variant, histiocytoses",
+   "note": "MEK1: switches on ERK without mutant BRAF, typically mutually exclusive with V600E"
+  },
+  {
+   "gene": "MAP2K4",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Pancreatic, breast, biliary",
+   "note": "Stress MAP2K (MKK4) activating JNK/p38; inactivating loss is tumour/metastasis-suppressive."
+  },
+  {
+   "gene": "MAPK1",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Cervical, head & neck",
+   "note": "ERK2 terminal effector; rare activating mutations sustain proliferation."
+  },
+  {
+   "gene": "MAX",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Pheochromocytoma, small-cell lung",
+   "note": "Obligate MYC partner enabling activation and MGA/MXD repression; its loss is oncogenic."
+  },
+  {
+   "gene": "MDM2",
+   "pathwayIds": [
+    "ddr-p53"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Sarcoma, glioma; amplified",
+   "note": "E3 ligase ubiquitinating p53 for degradation; amplification removes p53 restraint."
+  },
+  {
+   "gene": "MEF2B",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "DLBCL, follicular lymphoma",
+   "note": "Activates BCL6; hotspot mutations raise BCL6 in germinal-centre lymphoma."
+  },
+  {
+   "gene": "MET",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Lung, kidney, gastric",
+   "note": "Amplification and exon-14 skipping stabilise the active receptor."
+  },
+  {
+   "gene": "MGA",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "CLL, lung adenocarcinoma",
+   "note": "Represses MYC targets with MAX in ncPRC1.6; deletion lifts repression."
+  },
+  {
+   "gene": "MLH1",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Colorectal, endometrial (Lynch)",
+   "note": "MutL-alpha subunit (with PMS2); loss causes microsatellite instability."
+  },
+  {
+   "gene": "MPL",
+   "pathwayIds": [
+    "jak-stat"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "ET, myelofibrosis",
+   "note": "W515 variants activate the receptor without thrombopoietin"
+  },
+  {
+   "gene": "MSH2",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Colorectal, endometrial (Lynch)",
+   "note": "MutS-alpha subunit (with MSH6) recognising mispairs and small loops."
+  },
+  {
+   "gene": "MSH6",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Colorectal, endometrial (Lynch)",
+   "note": "Partners MSH2 as MutS-alpha to detect single-base mismatches."
+  },
+  {
+   "gene": "MTOR",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Renal, bladder",
+   "note": "mTORC1 catalytic kinase; activating mutations raise growth signalling."
+  },
+  {
+   "gene": "MYC",
+   "pathwayIds": [
+    "notch-lymphoid",
+    "transcription-differentiation",
+    "apoptosis-survival",
+    "burkitt-myc"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Burkitt, high-grade B-cell, myeloma; effector in AML",
+   "note": "Deregulated by translocation or amplification; drives proliferation, primes apoptosis"
+  },
+  {
+   "gene": "MYCN",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Neuroblastoma",
+   "note": "Amplified oncogene; dimerises with MAX to activate proliferation genes."
+  },
+  {
+   "gene": "MYD88",
+   "pathwayIds": [
+    "bcr-nfkb",
+    "tlr-il1r-myd88-nfkb"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Waldenstrom, ABC-DLBCL/MCD, PCNSL, CLL",
+   "note": "L265P stabilises the Myddosome, giving constitutive IRAK4/IRAK1 and NF-kB signalling"
+  },
+  {
+   "gene": "NF1",
+   "pathwayIds": [
+    "ras-mapk",
+    "ras-mapk-ext"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "JMML, AML/MDS",
+   "note": "Loss of the GTPase-activating protein leaves RAS locked in the GTP-bound state"
+  },
+  {
+   "gene": "NF2",
+   "pathwayIds": [
+    "gprotein-hippo"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Mesothelioma, meningioma, schwannoma",
+   "note": "Merlin loss disinhibits YAP/TAZ-TEAD by disabling the Hippo core."
+  },
+  {
+   "gene": "NFE2L2",
+   "pathwayIds": [
+    "nrf2-keap1"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Lung squamous, HNSCC, oesophageal",
+   "note": "Antioxidant-response TF; activating mutations evade KEAP1 for constant cytoprotection."
+  },
+  {
+   "gene": "NOTCH1",
+   "pathwayIds": [
+    "notch-lymphoid"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "CLL, mantle cell, T-ALL",
+   "note": "PEST-domain truncation (c.7541_7542delCT) removes the degron; NICD accumulates"
+  },
+  {
+   "gene": "NOTCH2",
+   "pathwayIds": [
+    "notch-lymphoid"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Splenic and other marginal zone; minority of MCL",
+   "note": "Truncating PEST-domain mutations remove the FBXW7 degron and stabilise NICD"
+  },
+  {
+   "gene": "NPM1",
+   "pathwayIds": [
+    "transcription-differentiation"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "AML (defining entity)",
+   "note": "Exon 12 frameshift adds a nuclear export signal; cytoplasmic NPM1 sustains HOXA9/MEIS1"
+  },
+  {
+   "gene": "NRAS",
+   "pathwayIds": [
+    "ras-mapk"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "JMML, CMML, AML, MDS",
+   "note": "G12/G13/Q61 impair GTP hydrolysis, so RAF/MEK/ERK stays on"
+  },
+  {
+   "gene": "NSD1",
+   "pathwayIds": [
+    "histone-methylation"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "AML (NUP98-NSD1), HNSCC",
+   "note": "H3K36me2 writer; NUP98-NSD1 fusion drives AML, loss in head-and-neck carcinoma."
+  },
+  {
+   "gene": "NTRK1",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Various carcinomas; secretory",
+   "note": "Oncogenic TRK fusions constitutively activate RAS-MAPK signalling."
+  },
+  {
+   "gene": "PALB2",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Breast, pancreatic, ovarian",
+   "note": "FANCN linking BRCA1 to BRCA2/RAD51 to enable homologous recombination."
+  },
+  {
+   "gene": "PAX5",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "B-cell ALL",
+   "note": "Master B-cell commitment factor; loss blocks differentiation and expands progenitors."
+  },
+  {
+   "gene": "PBRM1",
+   "pathwayIds": [
+    "swi-snf"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Clear cell renal cell carcinoma",
+   "note": "PBAF subunit (BAF180); second most mutated gene in clear cell renal carcinoma."
+  },
+  {
+   "gene": "PIK3CA",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Breast, endometrial, many carcinomas",
+   "note": "p110-alpha catalytic subunit; hotspots E545K/H1047R activate PI3K."
+  },
+  {
+   "gene": "PIK3CD",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "CLL, B-cell lymphoma",
+   "note": "Leukocyte p110-delta; activating mutations drive lymphoid PI3K."
+  },
+  {
+   "gene": "PIK3R1",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Endometrial, glioblastoma",
+   "note": "p85 regulatory subunit; loss releases p110 restraint, activating PI3K."
+  },
+  {
+   "gene": "PIM1",
+   "pathwayIds": [
+    "apoptosis-survival"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "ABC-DLBCL, CNS lymphoma, marginal zone",
+   "note": "Hypermutation target; kinase inactivates BAD and stabilises MYC"
+  },
+  {
+   "gene": "PLCG2",
+   "pathwayIds": [
+    "bcr-nfkb"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "CLL (BTK-inhibitor resistance)",
+   "note": "R665W/S707Y/L845F keep signalling on downstream of blocked BTK"
+  },
+  {
+   "gene": "POT1",
+   "pathwayIds": [
+    "p53-dna-damage"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "CLL (somatic and germline), adult T-cell leukaemia",
+   "note": "Loss of shelterin telomere capping; telomeres elongate and become unstable"
+  },
+  {
+   "gene": "PPM1D",
+   "pathwayIds": [
+    "ddr-p53"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Clonal haematopoiesis, t-MN, breast",
+   "note": "WIP1 phosphatase switching off p53/ATM/CHEK2; truncations activate it."
+  },
+  {
+   "gene": "PPP2R1A",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Endometrial, ovarian clear cell",
+   "note": "PP2A scaffold A; recurrent missense act dominant-negative, cutting the AKT brake."
+  },
+  {
+   "gene": "PPP6C",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Melanoma",
+   "note": "PP6 catalytic subunit dephosphorylating MEK; loss hyperactivates ERK."
+  },
+  {
+   "gene": "PRDM1",
+   "pathwayIds": [
+    "apoptosis-survival",
+    "immune-evasion"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "ABC-DLBCL, splenic marginal zone lymphoma",
+   "note": "BLIMP1 loss blocks plasma-cell differentiation, arresting cells at the plasmablast stage"
+  },
+  {
+   "gene": "PTEN",
+   "pathwayIds": [
+    "pi3k-akt"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "GCB-DLBCL, T-ALL / T-lymphoblastic lymphoma",
+   "note": "Lipid phosphatase returning PIP3 to PIP2; deletion, mutation or silencing frees PI3K/AKT"
+  },
+  {
+   "gene": "PTPN11",
+   "pathwayIds": [
+    "ras-mapk"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "JMML, CMML, AML; germline Noonan syndrome",
+   "note": "Activating changes relieve SHP2 autoinhibition and raise RAS-GTP"
+  },
+  {
+   "gene": "RAF1",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Noonan; therapy-related",
+   "note": "RAF kinase (CRAF); activating mutations drive MEK-ERK output."
+  },
+  {
+   "gene": "RB1",
+   "pathwayIds": [
+    "cellcycle-g1s"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "MCL, CLL, SCLC, retinoblastoma",
+   "note": "Pocket protein represses E2F; loss releases E2F and triggers S-phase."
+  },
+  {
+   "gene": "RET",
+   "pathwayIds": [
+    "rtk-ras"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Thyroid, lung (MEN2)",
+   "note": "Activating fusions and germline/somatic point mutations; MEN2 predisposition."
+  },
+  {
+   "gene": "RHOA",
+   "pathwayIds": [
+    "tcr-ptcl",
+    "gc-confinement"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "AITL/nodal Tfh lymphoma; Burkitt, GCB-DLBCL",
+   "note": "G17V in AITL: GTP-binding dead but binds VAV1 to drive TCR signalling; loss of function in GC lymphoma."
+  },
+  {
+   "gene": "RICTOR",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Lung, gastric (amplification)",
+   "note": "Defines mTORC2; amplification boosts AKT Ser473 phosphorylation."
+  },
+  {
+   "gene": "RIT1",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Lung, myeloid, Noonan-like",
+   "note": "RAS-family GTPase; mutants escape LZTR1 degradation and accumulate to activate MAPK."
+  },
+  {
+   "gene": "RNF43",
+   "pathwayIds": [
+    "wnt-bcatenin"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Colorectal, pancreatic, gastric",
+   "note": "E3 ligase ubiquitinating Frizzled; loss raises receptor-level WNT signalling."
+  },
+  {
+   "gene": "RRAS2",
+   "pathwayIds": [
+    "ras-mapk-ext"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Noonan-like, myeloid, rhabdomyosarcoma",
+   "note": "RAS-family GTPase (TC21); activating mutations signal through RAF-MEK-ERK."
+  },
+  {
+   "gene": "RUNX1",
+   "pathwayIds": [
+    "transcription-differentiation"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "AML, MDS, CMML; germline FPD with myeloid risk",
+   "note": "RUNT missense (often dominant-negative) or C-terminal truncation blocks differentiation"
+  },
+  {
+   "gene": "SETD2",
+   "pathwayIds": [
+    "histone-methylation"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Renal carcinoma, ALL, some lymphomas",
+   "note": "H3K36me3 methyltransferase aiding DNA repair; inactivating tumour-suppressor loss."
+  },
+  {
+   "gene": "SF3B1",
+   "pathwayIds": [
+    "spliceosome"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "MDS with ring sideroblasts, MDS/MPN-RS-T, CLL",
+   "note": "K700E change-of-function (not loss): altered branchpoint use, cryptic 3' sites, NMD loss"
+  },
+  {
+   "gene": "SGK1",
+   "pathwayIds": [
+    "pi3k-akt"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Follicular lymphoma, GCB-DLBCL, NLPHL",
+   "note": "Exon 2 hypermutation; truncated hyperstable isoforms, so simple loss of function unproven"
+  },
+  {
+   "gene": "SMARCA4",
+   "pathwayIds": [
+    "swi-snf"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "SCCOHT, thoracic sarcoma, rhabdoid, lung",
+   "note": "Catalytic ATPase (BRG1) powering remodelling; loss disables the whole complex."
+  },
+  {
+   "gene": "SMARCB1",
+   "pathwayIds": [
+    "swi-snf"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Rhabdoid tumours, epithelioid sarcoma",
+   "note": "Core subunit (INI1); biallelic loss defines rhabdoid tumours; antagonises PRC2."
+  },
+  {
+   "gene": "SOCS1",
+   "pathwayIds": [
+    "jak-stat",
+    "il4-jak-stat6"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Hodgkin lymphoma, PMBCL, DLBCL",
+   "note": "Normally shuts off JAK/STAT; inactivation leaves signalling switched on"
+  },
+  {
+   "gene": "SOS1",
+   "pathwayIds": [
+    "rtk-ras",
+    "ras-mapk-ext"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Lung; Noonan syndrome",
+   "note": "Guanine-exchange factor loading GTP onto RAS; activating mutations enhance it."
+  },
+  {
+   "gene": "SPOP",
+   "pathwayIds": [
+    "transcription-repressors"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "Prostate, endometrial",
+   "note": "Cullin3 adaptor degrading AR, ERG and BRD4; degradation direction varies by tissue."
+  },
+  {
+   "gene": "SRSF2",
+   "pathwayIds": [
+    "spliceosome"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "CMML, MDS, secondary AML",
+   "note": "P95 hotspot shifts exonic splicing enhancer preference; altered, not lost, function"
+  },
+  {
+   "gene": "STAT3",
+   "pathwayIds": [
+    "jak-stat",
+    "tlr-il1r-myd88-nfkb"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "T-LGL leukaemia; activated in ABC-DLBCL",
+   "note": "SH2-domain variants (e.g. Y640F) increase dimerisation and activity"
+  },
+  {
+   "gene": "STAT6",
+   "pathwayIds": [
+    "il4-jak-stat6"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Follicular lymphoma; PMBCL; Hodgkin lymphoma",
+   "note": "DNA-binding hotspots (N417, D419, N421) prolong nuclear residency; still needs IL-4/IL-13 input."
+  },
+  {
+   "gene": "STK11",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Lung (Peutz-Jeghers)",
+   "note": "LKB1 activates AMPK to inhibit mTORC1; loss removes this brake."
+  },
+  {
+   "gene": "SUZ12",
+   "pathwayIds": [
+    "histone-methylation"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "MPNST, T-ALL",
+   "note": "Core PRC2 subunit needed for H3K27me3; inactivating loss disables PRC2."
+  },
+  {
+   "gene": "TCF3",
+   "pathwayIds": [
+    "burkitt-myc"
+   ],
+   "mechanism": "gain-of-function",
+   "malignancies": "Burkitt lymphoma (B-ALL involves TCF3 fusions instead)",
+   "note": "Burkitt point mutations block ID3 binding: tonic B-cell receptor signalling into PI3K, plus cyclin D3."
+  },
+  {
+   "gene": "TET2",
+   "pathwayIds": [
+    "epigenetic-regulators",
+    "tcr-ptcl"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "AML, MDS, CMML, clonal haematopoiesis, AITL",
+   "note": "Loss of 5-methylcytosine to 5-hydroxymethylcytosine conversion"
+  },
+  {
+   "gene": "TNFAIP3",
+   "pathwayIds": [
+    "bcr-nfkb",
+    "tlr-il1r-myd88-nfkb"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "MALT/marginal zone, ABC-DLBCL, classic Hodgkin",
+   "note": "A20 strips K63 ubiquitin from RIP1/TRAF6; inactivation (haploinsufficient) releases NF-kB"
+  },
+  {
+   "gene": "TNFRSF14",
+   "pathwayIds": [
+    "immune-evasion"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Follicular lymphoma, DLBCL",
+   "note": "HVEM loss removes the BTLA brake on TFH help, reshaping the supporting niche"
+  },
+  {
+   "gene": "TP53",
+   "pathwayIds": [
+    "p53-dna-damage",
+    "apoptosis-survival",
+    "burkitt-myc",
+    "cellcycle-nuclear",
+    "ddr-p53"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "CLL, mantle cell, MDS/AML, DLBCL, Richter, Burkitt",
+   "note": "Mutation and/or del(17p); missense often dominant-negative; biallelic worst, chemo-refractory"
+  },
+  {
+   "gene": "TSC1",
+   "pathwayIds": [
+    "pi3k-akt-mtor"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "Bladder; tuberous sclerosis",
+   "note": "TSC1/2 is a Rheb-GAP restraining mTORC1; loss de-represses growth."
+  },
+  {
+   "gene": "U2AF1",
+   "pathwayIds": [
+    "spliceosome"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "MDS, AML, CMML, primary myelofibrosis",
+   "note": "S34/Q157 shift 3' splice-site choice; altered specificity, always heterozygous"
+  },
+  {
+   "gene": "XPO1",
+   "pathwayIds": [
+    "cellcycle-nuclear"
+   ],
+   "mechanism": "context-dependent",
+   "malignancies": "PMBCL; classical Hodgkin lymphoma; CLL (subclonal)",
+   "note": "E571K shifts which export signals the cargo groove reads rather than raising export; cargo-dependent."
+  },
+  {
+   "gene": "XRCC3",
+   "pathwayIds": [
+    "mmr-fanconi"
+   ],
+   "mechanism": "loss-of-function",
+   "note": "RAD51 paralog; helps assemble the RAD51 filament for homologous recombination."
+  },
+  {
+   "gene": "ZRSR2",
+   "pathwayIds": [
+    "spliceosome"
+   ],
+   "mechanism": "loss-of-function",
+   "malignancies": "MDS, CMML",
+   "note": "Truncating, X-linked; retention of U12-type minor introns"
+  }
+ ]
+}

@@ -1,0 +1,586 @@
+:root {
+  --bg: #0f1420;
+  --bg-2: #161d2e;
+  --panel: #1b2438;
+  --panel-2: #212c44;
+  --border: #2b3652;
+  --text: #e7ecf6;
+  --muted: #93a0b8;
+  --muted-2: #6b7891;
+  --accent: #4bb8a9;
+  --accent-2: #7c6cff;
+
+  /* DNA base colours */
+  --base-A: #46b877;
+  --base-C: #4f83e2;
+  --base-G: #e0a54e;
+  --base-T: #e05561;
+  --base-N: #6b7891;
+
+  /* Amino-acid polarity colours (match src/core/aminoAcids.mjs) */
+  --pol-nonpolar: #d99a4e;
+  --pol-polar: #37a89a;
+  --pol-acidic: #e05561;
+  --pol-basic: #4f83e2;
+  --pol-stop: #8a8f99;
+
+  --radius: 12px;
+  --mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+  --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: var(--sans);
+  background: radial-gradient(1200px 700px at 80% -10%, #1a2540 0%, transparent 60%), var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  /* Freeze the header + tabs at the top; only the content area (main) scrolls. */
+  height: 100vh; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+
+/* ---------- scrollbars (slim, theme-matched) ---------- */
+* { scrollbar-width: thin; scrollbar-color: #33405f transparent; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #33405f; border-radius: 999px;
+  border: 2px solid transparent; background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: #47567c; background-clip: padding-box; }
+::-webkit-scrollbar-corner { background: transparent; }
+
+/* ---------- header ---------- */
+header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #18203400, #0f142000);
+  flex: 0 0 auto;
+}
+/* Desktop build only (class set by the renderer): the native title bar is hidden, so reserve the
+   top-right for the colour-matched window controls and make the header the window's drag handle.
+   The browser build has no native controls, so it must NOT get this padding or it leaves a gap. */
+/* The native overlay is transparent, so the controls float over whatever is behind them; the header
+   just needs to reserve their space and act as the drag handle. */
+.desktop-chrome header { padding-right: 150px; -webkit-app-region: drag; }
+
+.desktop-chrome header .pill, .desktop-chrome header button,
+.desktop-chrome header a, .desktop-chrome header input { -webkit-app-region: no-drag; }
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand .mark {
+  font-weight: 700; font-size: 20px; letter-spacing: 0.3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.brand .tag { color: var(--muted); font-size: 13px; }
+header .spacer { flex: 1; }
+.pill {
+  font-size: 12px; color: var(--muted); border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 999px; background: var(--bg-2);
+}
+.pill.ok { color: #7ee0b0; border-color: #285e46; }
+
+/* ---------- tabs ---------- */
+nav.tabs { display: flex; gap: 4px; padding: 10px 18px 0; border-bottom: 1px solid var(--border); flex: 0 0 auto; }
+nav.tabs button {
+  background: transparent; border: none; color: var(--muted);
+  padding: 10px 16px; font-size: 14px; cursor: pointer; border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid transparent;
+}
+nav.tabs button:hover { color: var(--text); background: #ffffff08; }
+nav.tabs button.active { color: var(--text); border-bottom-color: var(--accent); }
+
+/* The only scrolling region. Full width so the scrollbar sits at the window edge; the active view
+   keeps the centred max-width layout. */
+main { flex: 1 1 auto; overflow-y: auto; }
+.view { display: none; }
+.view.active { display: block; max-width: 1240px; margin: 0 auto; padding: 20px 22px 60px; }
+
+/* ---------- cards ---------- */
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px; margin-bottom: 18px;
+}
+.card h2 { margin: 0 0 4px; font-size: 15px; }
+.card .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 940px) { .grid2 { grid-template-columns: 1fr; } }
+
+/* ---------- inputs ---------- */
+input[type=text] {
+  background: var(--bg-2); border: 1px solid var(--border); color: var(--text);
+  border-radius: 8px; padding: 11px 13px; font-family: var(--mono); font-size: 14px; width: 100%;
+}
+input[type=text]:focus { outline: none; border-color: var(--accent); }
+button.btn {
+  background: linear-gradient(180deg, var(--accent), #329c8e); color: #06231f; border: none;
+  padding: 11px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px;
+}
+button.btn:hover { filter: brightness(1.07); }
+button.btn.secondary { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); }
+button.btn.small { padding: 7px 12px; font-size: 12.5px; }
+button.btn:disabled { opacity: 0.5; cursor: default; }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  font-family: var(--mono); font-size: 12.5px; color: var(--text);
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: 999px;
+  padding: 5px 12px; cursor: pointer;
+}
+.chip:hover { border-color: var(--accent); }
+.chip .g { color: var(--muted); }
+
+/* ---------- consequence badge ---------- */
+.consequence {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 10px; font-weight: 700; font-size: 15px;
+  border: 1px solid var(--border);
+}
+.consequence .dot { width: 10px; height: 10px; border-radius: 50%; }
+.c-missense { background: #e0a54e18; color: #f0c07a; border-color: #6a4f22; }
+.c-missense .dot { background: var(--pol-nonpolar); }
+.c-nonsense { background: #e0556118; color: #f19aa2; border-color: #6a2b30; }
+.c-nonsense .dot { background: var(--pol-acidic); }
+.c-synonymous { background: #46b87718; color: #8fe0b0; border-color: #275c40; }
+.c-synonymous .dot { background: #46b877; }
+.c-stop-loss, .c-start-loss { background: #7c6cff18; color: #b9aeff; border-color: #3f3a72; }
+.c-stop-loss .dot, .c-start-loss .dot { background: var(--accent-2); }
+.c-stop-retained { background: #46b87718; color: #8fe0b0; border-color: #275c40; }
+.c-stop-retained .dot { background: #46b877; }
+.c-unknown { background: #6b789118; color: var(--muted); }
+.c-unknown .dot { background: var(--muted); }
+.c-frameshift { background: #e0556118; color: #f19aa2; border-color: #6a2b30; }
+.c-frameshift .dot { background: var(--pol-acidic); }
+.c-inframe-deletion, .c-inframe-insertion, .c-inframe-duplication, .c-inframe-delins {
+  background: #a86cff18; color: #c4aeff; border-color: #4a3d7a;
+}
+.c-inframe-deletion .dot, .c-inframe-insertion .dot,
+.c-inframe-duplication .dot, .c-inframe-delins .dot { background: #a86cff; }
+
+/* GeneBe verdict colours (ACMG / predictions) */
+.consequence.v-path { background: #e0556118; color: #f19aa2; border-color: #6a2b30; }
+.consequence.v-path .dot { background: var(--pol-acidic); }
+.consequence.v-benign { background: #46b87718; color: #8fe0b0; border-color: #275c40; }
+.consequence.v-benign .dot { background: #46b877; }
+.consequence.v-vus { background: #e0a54e18; color: #f0c07a; border-color: #6a4f22; }
+.consequence.v-vus .dot { background: var(--pol-nonpolar); }
+.consequence.v-unknown { background: #6b789118; color: var(--muted); }
+.consequence.v-unknown .dot { background: var(--muted); }
+/* Conflicting: laboratories disagree. It must not look like a settled Pathogenic call, so it has a
+   colour of its own rather than sharing the red or the amber. */
+.consequence.v-conflict { background: #9b7ede18; color: #cbb8f5; border-color: #4a3d7a; }
+.consequence.v-conflict .dot { background: #9b7ede; }
+/* Somatic clinical-impact tiers: a level of evidence for treatment, not a pathogenicity call. */
+.consequence.v-tier { background: #5b8fbf18; color: #a9c8e4; border-color: #2c4a68; }
+.consequence.v-tier .dot { background: #5b8fbf; }
+.tag.v-path { background: #e05561; }
+.tag.v-benign { background: #46b877; }
+.tag.v-vus { background: #e0a54e; }
+.tag.v-conflict { background: #9b7ede; }
+.tag.v-tier { background: #5b8fbf; }
+.tag.v-unknown { background: #8a8f99; }
+
+/* sortable table headers + chemical structures */
+.copyable { cursor: pointer; border-bottom: 1px dashed var(--muted-2); }
+.copyable:hover { color: var(--accent); border-bottom-color: var(--accent); }
+th.sortable { cursor: pointer; user-select: none; white-space: nowrap; }
+th.sortable:hover { color: var(--text); }
+.sort-arrow { color: var(--accent); font-size: 11px; }
+.aa-struct { background: #0e1421; border: 1px solid var(--border); border-radius: 8px; padding: 4px; display: inline-block; }
+.aa-struct svg { width: 92px; height: auto; display: block; }
+.aa-big .aa-struct { margin-top: 10px; }
+.aa-big .aa-struct svg { width: 96px; }
+
+/* ---------- amino-acid change display ---------- */
+.aa-change { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin: 6px 0 2px; }
+.aa-big {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  min-width: 120px; padding: 14px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--bg-2);
+}
+.aa-big .letter { font-size: 40px; font-weight: 800; line-height: 1; font-family: var(--mono); }
+.aa-big .three { font-size: 15px; font-weight: 600; }
+.aa-big .name { font-size: 12.5px; color: var(--muted); }
+.aa-big .pol { font-size: 11px; margin-top: 4px; padding: 2px 8px; border-radius: 999px; color: #0c0f16; font-weight: 700; }
+.arrow { font-size: 26px; color: var(--muted); }
+
+/* ---------- codon change ---------- */
+.codon-change { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+.codon { display: flex; gap: 4px; }
+.base {
+  width: 30px; height: 38px; display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; font-family: var(--mono); font-weight: 700; font-size: 18px; color: #0c0f16;
+}
+.base.A { background: var(--base-A); } .base.C { background: var(--base-C); }
+.base.G { background: var(--base-G); } .base.T { background: var(--base-T); } .base.N { background: var(--base-N); color:#fff; }
+.base.changed { outline: 3px solid #fff; outline-offset: 1px; }
+
+/* ---------- base track ---------- */
+.track-wrap { overflow-x: auto; padding-bottom: 8px; }
+.track { display: inline-flex; flex-direction: column; gap: 2px; min-width: 100%; }
+.track-row { display: flex; gap: 2px; align-items: center; }
+.track-row .rowlabel { width: 64px; color: var(--muted); font-size: 12px; flex-shrink: 0; }
+.tbase {
+  width: 22px; height: 26px; display: flex; align-items: center; justify-content: center;
+  border-radius: 4px; font-family: var(--mono); font-weight: 700; font-size: 13px; color: #0c0f16;
+}
+.tbase.A { background: var(--base-A); } .tbase.C { background: var(--base-C); }
+.tbase.G { background: var(--base-G); } .tbase.T { background: var(--base-T); } .tbase.N{background:var(--base-N);color:#fff;}
+.tbase.dim { opacity: 0.32; }
+.tbase.hl { outline: 2px solid #fff; outline-offset: 1px; }
+.ruler { display: flex; gap: 2px; }
+.rtick { width: 22px; text-align: center; font-size: 9.5px; color: var(--muted-2); font-family: var(--mono); }
+
+/* Translate-tool codon figure: two antiparallel strands, amino acid under each codon */
+.codon-fig { display: inline-flex; gap: 8px; align-items: flex-start; padding: 2px 0; }
+.codon-fig .codon-block, .codon-fig .cf-gutter, .codon-fig .cf-end { display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.codon-fig .cb-row { display: flex; gap: 2px; }
+.codon-fig .cb-aa { font-family: var(--mono); font-weight: 700; font-size: 13px; line-height: 1; margin-top: 1px; }
+.codon-fig .cb-aa.muted { color: var(--muted-2); }
+.codon-fig .cf-gutter { align-items: flex-end; margin-right: 2px; }
+.codon-fig .cf-gutter div { height: 26px; display: flex; align-items: center; font-size: 11px; color: var(--muted); white-space: nowrap; }
+.codon-fig .cf-gutter div:last-child { height: auto; }
+.codon-fig .cf-end div { height: 26px; display: flex; align-items: center; font-size: 10px; color: var(--muted-2); font-family: var(--mono); }
+.count-chips { display: flex; gap: 8px; margin-top: 10px; }
+.count-chip { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.count-chip .sw { width: 12px; height: 12px; border-radius: 3px; }
+
+/* ---------- property mini table ---------- */
+.props { display: grid; grid-template-columns: auto 1fr auto 1fr; gap: 6px 16px; font-size: 13px; }
+.props .k { color: var(--muted); }
+.props .v { font-family: var(--mono); }
+
+/* ---------- reference tables ---------- */
+table.ref { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.ref th, table.ref td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+table.ref th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--panel); }
+table.ref td.mono, table.ref th.mono { font-family: var(--mono); }
+.aa-swatch { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 6px; font-family: var(--mono); font-weight: 800; color: #0c0f16; }
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 999px; color: #0c0f16; font-weight: 700; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.legend .item { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
+.legend .sw { width: 14px; height: 14px; border-radius: 4px; }
+
+/* ---------- codon table (genetic code) ---------- */
+.gc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.gc-block { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.gc-cell {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 6px 10px; font-family: var(--mono); font-size: 13px; border-bottom: 1px solid #0f14203a;
+  cursor: default;
+}
+.gc-cell:last-child { border-bottom: none; }
+.gc-cell .codon { font-weight: 700; letter-spacing: 1px; }
+.gc-cell .aa { display: flex; align-items: center; gap: 6px; }
+.gc-cell .aa .sw { width: 20px; height: 20px; border-radius: 5px; font-weight: 800; color: #0c0f16; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.gc-cell .aa .nm { color: var(--muted); font-size: 11.5px; }
+
+/* ---------- protein viewer ---------- */
+#viewer { position: relative; width: 100%; height: 460px; border-radius: 10px; border: 1px solid var(--border); background: #0b0f18; overflow: hidden; }
+#viewer .hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 20px; }
+.note { font-size: 12.5px; color: var(--muted); }
+.warn { color: #f0c07a; }
+.err { color: #f19aa2; }
+.mono { font-family: var(--mono); }
+.muted { color: var(--muted); }
+textarea {
+  width: 100%; min-height: 90px; background: var(--bg-2); border: 1px solid var(--border);
+  color: var(--text); border-radius: 8px; padding: 11px; font-family: var(--mono); font-size: 13px; resize: vertical;
+}
+.kv { display: grid; grid-template-columns: 160px 1fr; gap: 6px 14px; font-size: 13px; }
+.kv .k { color: var(--muted); }
+.kv .v { font-family: var(--mono); overflow-wrap: anywhere; word-break: normal; }
+a { color: var(--accent); cursor: pointer; }
+.disclaimer { font-size: 12px; color: var(--muted-2); border-left: 3px solid var(--border); padding-left: 12px; }
+
+/* ---------- condensed result layout + lollipop ---------- */
+.inforow { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px; }
+.ib { flex: 1 1 250px; min-width: 250px; }
+.ib-h { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin-bottom: 8px; }
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
+.lolli-wrap { width: 100%; overflow-x: auto; }
+.inforow .aa-change { gap: 12px; }
+.inforow .aa-big { min-width: 104px; padding: 12px; }
+.inforow .aa-big .letter { font-size: 34px; }
+/* compact panels for the lollipop board (screenshot-friendly) */
+.board-card { padding: 12px 14px; margin-bottom: 10px; }
+.board-card h2 { font-size: 14px; }
+.board-card .domain-legend { margin-top: 7px; }
+.board-card .lolli-wrap { margin-top: 2px; }
+.domain-legend { display: flex; flex-wrap: wrap; gap: 7px 16px; margin-top: 12px; }
+.dleg { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; }
+.dsw { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.dlabel { color: var(--text); }
+.drange { color: var(--muted-2); font-family: var(--mono); font-size: 11px; }
+.tflank { width: 20px; text-align: center; font-size: 10px; color: var(--muted-2); font-family: var(--mono); flex-shrink: 0; align-self: center; }
+
+/* ---------- fusions / translocations (BND) ---------- */
+.fus-panel {
+  border: 1px solid var(--border); border-radius: 10px; background: var(--bg-2);
+  padding: 12px 14px 14px; margin-top: 14px;
+}
+.fus-headline { font-size: 14px; font-weight: 700; color: var(--text); margin: 10px 0 5px; line-height: 1.4; }
+.fus-panel .note { line-height: 1.55; }
+.fus-chips { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 12px; }
+.fus-chip {
+  font-size: 11.5px; padding: 3px 10px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--panel); color: var(--text);
+}
+.fus-chip b { color: var(--muted); font-weight: 600; margin-right: 5px; }
+.fus-chip.warn { border-color: #7a4b28; background: #2a1a10; color: #f0c07a; }
+.fus-chip.warn b { color: #c9a06a; }
+.fus-chip.bad { border-color: #6a2b30; background: #2a1216; color: #f19aa2; }
+.fus-chip.bad b { color: #c98a90; }
+.fus-caveats { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 11.5px; line-height: 1.55; }
+.fus-caveats li { margin: 3px 0; }
+
+/* ---- summary ledger: the whole paste before any one event is opened up ---- */
+.fus-ledger { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.fus-ledger th {
+  text-align: left; font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--muted-2); font-weight: 700; padding: 0 12px 6px 0; border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.fus-ledger td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+.fus-ledger tr:last-child td { border-bottom: none; }
+.fus-ledger td a { color: var(--text); font-weight: 700; text-decoration: none; border-bottom: 1px dotted var(--muted-2); }
+.fus-ledger td a:hover, .fus-ledger td a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+.fus-ledger .kind { color: var(--muted); }
+.fus-ledger .num, .fus-ledger th.num {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right;
+}
+.fus-ledger .g { font-weight: 700; color: var(--text); }
+/* The arrow glyph has a tall ascent in the fallback face and pushes the whole line box down, which
+   knocks this cell out of line with the rest of the row. Pin its box so the row stays level. */
+.fus-ledger td { line-height: 1.5; }
+.fus-ledger .arrow {
+  display: inline-block; line-height: 1; font-size: 12px; font-weight: 700;
+  padding: 0 5px; vertical-align: baseline; color: var(--muted-2);
+}
+.fus-ledger tr.productive .arrow { color: var(--accent); }
+
+/* ---- legend: the three verdicts, defined once ---- */
+.fus-legend {
+  display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 12px; padding-top: 10px;
+  border-top: 1px solid var(--border); font-size: 11.5px; color: var(--muted);
+}
+.fus-legend > span { display: flex; align-items: center; gap: 7px; }
+.fus-legend .tag { flex: none; }
+.fus-legend-note { color: var(--muted-2); font-style: italic; }
+
+/* ---- panel head: what this derivative is, and the call ---- */
+.fus-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+.fus-head h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+.fus-reading { font-size: 14px; margin-top: 3px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.fus-reading .g { font-weight: 700; color: var(--text); }
+.fus-reading .arrow { color: var(--muted-2); font-weight: 700; font-size: 13px; }
+.fus-panel.productive .fus-reading .arrow { color: var(--accent); }
+.fus-call { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.fus-call .mech { color: var(--muted); font-size: 12px; }
+.fus-sub { color: var(--muted-2); font-size: 11.5px; margin-top: 4px; }
+.fus-figure { margin-top: 12px; }
+.fus-summary { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 6px 0 0; max-width: 88ch; }
+
+/* ---- folded detail: present, but not competing with the reasoning ---- */
+.fus-fold { margin-top: 12px; border-top: 1px solid var(--border); }
+.fus-fold > summary {
+  cursor: pointer; font-size: 11.5px; color: var(--accent); list-style: none;
+  padding: 8px 0 2px; user-select: none;
+}
+.fus-fold > summary::-webkit-details-marker { display: none; }
+.fus-fold > summary::before { content: "▸"; display: inline-block; width: 1.1em; }
+.fus-fold[open] > summary::before { content: "▾"; }
+.fus-fold > summary:hover { text-decoration: underline; }
+.fus-fold > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Two fact pairs per row so the block fills the panel, a rule under every row. */
+.fus-facts {
+  display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr);
+  gap: 0 16px; font-size: 12px; align-content: start; margin: 8px 0 12px; width: 100%;
+}
+@media (max-width: 780px) { .fus-facts { grid-template-columns: max-content minmax(0, 1fr); } }
+.fus-facts dt, .fus-facts dd { padding: 6px 0; border-bottom: 1px solid #232d44; }
+.fus-facts dt { color: var(--muted); white-space: nowrap; }
+.fus-facts dd { margin: 0; color: var(--text); font-variant-numeric: tabular-nums; }
+.fus-facts dd.m { font-family: var(--mono); font-size: 11px; }
+.fus-facts dd.bad { color: #f19aa2; }
+/* Each piece of the derivative gets its own block, so the two genes never blur together. */
+.fus-facts dt.seg {
+  grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline;
+  gap: 8px; white-space: normal; padding-bottom: 3px; border-bottom: 1px solid var(--border);
+}
+.fus-facts dt.seg.later { margin-top: 11px; }
+.fus-facts dt.seg .g { font-weight: 700; color: var(--text); font-size: 12.5px; }
+.fus-facts dt.seg .part { color: var(--muted-2); font-size: 11px; text-align: right; }
+/* A term whose label carries an explanation should look askable. */
+.fus-facts dt[title], .fus-ledger th[title] { cursor: help; border-bottom: 1px dotted var(--muted-2); }
+
+/* Jumping from the ledger has to land somewhere visible. */
+.fus-panel.flash { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Productivity is a mechanistic call about a junction, not an ACMG classification — it gets its own
+   pill so it can never be misread as pathogenic/uncertain/benign. */
+.tag.v-driver { background: var(--accent); color: #06231f; }
+.tag.v-maybe { background: #6b7891; color: #0c0f16; }
+
+/* ---- Fusions: Report format (approved design) ---- */
+.fus-evfig { display: flex; gap: 16px; align-items: center; margin-top: 10px; }
+.fus-ideos { flex: 1 1 auto; min-width: 0; }
+.fus-ideos svg { display: block; width: 100%; height: auto; }
+.fus-circos { flex: 0 0 172px; }
+.fus-circos svg { display: block; width: 172px; height: auto; }
+@media (max-width: 860px) { .fus-evfig { flex-direction: column; } .fus-circos { flex-basis: auto; } }
+.fus-figure svg, .fus-refsep svg { display: block; width: 100%; height: auto; }
+.fus-refsep {
+  margin-top: 16px; padding: 12px 14px 8px;
+  background: #10151f; border: 1px solid var(--border); border-radius: 8px;
+}
+.fus-tablenote { font-size: 11.5px; color: var(--muted); margin: -8px 4px 18px; line-height: 1.6; }
+.fus-tablenote b { color: var(--text); }
+.fus-fold > summary {
+  cursor: pointer; display: block; list-style: none;
+  background: var(--panel-2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 10px 14px; font-size: 13px; font-weight: 600; color: var(--text);
+}
+.fus-fold > summary::-webkit-details-marker { display: none; }
+.fus-fold > summary:hover { border-color: var(--accent); color: var(--accent); }
+.fus-fold.evid > summary { background: #14342a; border-color: #2f6a54; }
+.fus-fold.evid > summary:hover { border-color: #4bb88f; color: #7ee0b0; }
+
+/* SVG text (the figures are innerHTML strings, styled from here) */
+.ideo-name { font: 700 12px var(--sans); fill: #c7d6e8; }
+.ideo-sub { font: 10px var(--sans); fill: var(--muted-2); }
+.ideo-arm { font: 9px var(--sans); fill: var(--muted-2); }
+.ideo-band { font: 700 11px var(--mono); fill: #ff8a84; }
+.rx-head { font: 700 13px var(--sans); fill: var(--text); }
+.rx-read { font: 700 11px var(--sans); fill: #7ee0b0; }
+.rx-chr { font: 700 12px var(--sans); fill: #c7d6e8; }
+.rx-chrsub { font: 10px var(--sans); fill: var(--muted-2); }
+.rx-gname-sm { font: 10px var(--sans); fill: #aab4c6; }
+.rx-five { font: 700 11px var(--sans); fill: var(--muted); }
+.rx-bp { font: 10px var(--mono); fill: #e08a86; }
+.rx-gfocus { font: 700 13px var(--sans); }
+.rx-igname { font: 700 11px var(--sans); fill: #aab4c6; }
+.rx-bound { font: 8.5px var(--sans); fill: var(--muted-2); }
+.rx-dsub { font: 11px var(--sans); fill: #aab4c6; }
+.rx-dpos { font: 9.5px var(--mono); fill: var(--muted-2); }
+.rx-note { font: 9px var(--sans); fill: var(--muted-2); }
+.circ-lab { font: 700 11px var(--sans); }
+/* Chromosomes the junction does not touch: named, but kept quiet. */
+.circ-lab-off { font: 600 7px var(--sans); fill: #6b7690; }
+
+.fus-picker {
+  background: var(--panel-2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font-size: 12.5px; max-width: 380px;
+}
+.fus-picker:focus { outline: none; border-color: var(--accent); }
+.fus-fold .fus-caveats { margin: 6px 0 10px; }
+
+/* compact known-variant lookup on the Assess page */
+.known-results { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.known-hit {
+  display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 12px; cursor: pointer; color: var(--text); font: inherit; font-size: 13px;
+}
+.known-hit:hover { border-color: var(--accent); }
+.known-hit .tail { margin-left: auto; font-size: 11px; font-family: var(--mono); }
+/* The merged evidence and disease context, on its own line under the variant name. */
+.known-hit { flex-wrap: wrap; }
+.known-hit .known-note { flex-basis: 100%; font-size: 11px; color: var(--muted); }
+
+/* ---- Variant evidence tab ------------------------------------------------
+   Laid out so the page reads top to bottom without hunting: one line of
+   identity, the scores at a glance, then the evidence behind them. The panel
+   used to be four equal cards in a 2x2 grid, which left a tall column of empty
+   space beside the short ones. */
+.ve-standing {
+  font-size: 11.5px; color: var(--muted); padding: 2px 2px 10px;
+}
+.ve-standing .ve-warn { color: #e0b978; }
+
+/* the identity strip: everything that names the variant, on one line */
+.ve-ident {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 9px 14px; margin-bottom: 12px;
+}
+.ve-ident strong { font-size: 15px; color: var(--text); }
+.ve-dim { color: var(--muted); font-size: 12px; }
+
+/* cards that hold one short answer should not reserve a card's worth of height */
+.card.ve-tight { padding-top: 12px; padding-bottom: 12px; }
+.card.ve-tight h2 { font-size: 14px; margin-bottom: 6px; }
+.ve-inline { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; font-size: 14px; }
+.ve-inline b { color: #dbe9fb; font-weight: 700; }
+
+/* the predictor bar: one row of tiles across the full width, wrapping evenly */
+.ve-predbar .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+
+/* Balanced columns. Two problems were showing at once: a grid STRETCHES every child to the tallest
+   in its row, which put a band of empty card under "Show 48 submissions" and under the Somatic
+   context links; and a fixed two-column split leaves whichever column is shorter ending early. Which
+   card is tallest changes with the variant — ClinVar is long with 48 submissions and two lines with
+   none — so the browser distributes them and both columns finish at about the same place. */
+/* Three short boxes across the width, each ending where its own content ends. `align-items: start`
+   matters: without it the grid stretches all three to the tallest, which is what left bands of empty
+   card under the shorter ones. */
+/* One clean band: the three boxes are the same height, and each card lays its content out as a column
+   with its footnote pushed to the bottom. Left to their natural heights they ended at three different
+   places; stretched without this, the extra height sat empty inside the shorter two. */
+.ve-three {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch;
+}
+.ve-three > .card { display: flex; flex-direction: column; }
+/* Only a genuine caption is pinned to the bottom. Selecting the last child instead caught gnomAD's
+   "unavailable" message and pushed THAT to the floor, opening a hole above it — a rule that guesses
+   which element is furniture will eventually guess wrong. */
+.ve-three > .card > .ve-cap { margin-top: auto; padding-top: 8px; }
+@media (max-width: 1100px) { .ve-three { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) { .ve-three { grid-template-columns: 1fr; } }
+.ve-three > .card { margin: 0; }
+/* ClinVar's rows: label, classification, stars — together, in reading order */
+.cv-line .cv-label { min-width: 190px; }
+
+/* the panel's own rhythm: one gap size throughout, rather than the page default between some rows
+   and a card margin between others */
+#view-assessment .card { margin-bottom: 0; }
+#assess-panel > * + * { margin-top: 14px; }
+
+.ve-foot { padding: 2px 2px 0; }
+
+/* ---- Variant evidence: card identity and figure tiles --------------------
+   Each card's title carries the same colour as its own outline, so a heading
+   reads as a heading rather than as the first line of the text under it. */
+.ve-card { border-left: 3px solid var(--ve-accent); }
+.ve-card > h2.ve-title {
+  color: var(--ve-accent); font-size: 13px; letter-spacing: .04em;
+  text-transform: uppercase; margin: 0 0 10px;
+}
+.ve-gnomad  { --ve-accent: #6fb2e8; }
+.ve-somatic { --ve-accent: #e0956a; }
+.ve-portals { --ve-accent: #8fd6a8; }
+.ve-clinvar { --ve-accent: #b79ae8; }
+
+/* figure tiles: the same shape wherever a number is shown */
+.ve-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+.ve-tile {
+  background: #152232; border: 1px solid #26405c; border-radius: 10px; padding: 11px 13px;
+}
+.ve-tile-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted);
+}
+.ve-tile-big { font-size: 21px; font-weight: 700; margin-top: 3px; color: #dbe9fb; }
+.ve-tile-sub { font-size: 11.5px; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+
+/* ClinVar's three classifications, side by side */
+.cv-tile-body { margin-top: 6px; }
+.cv-stars { letter-spacing: 2px; color: #c7b26a; margin-top: 5px; font-size: 13px; }
+
+/* link buttons fill the card they are in, rather than trailing off at the right */
+.ve-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+.ve-links > .btn, .ve-links > a { width: 100%; text-align: center; }
