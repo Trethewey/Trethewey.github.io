@@ -3,6 +3,8 @@
 // Only a public genomic coordinate is sent — never patient data. Two public services are used:
 //   1. Ensembl VEP HGVS endpoint converts the coding HGVS (e.g. NM_005373.3:c.1544G>T) to a GRCh38
 //      genomic coordinate, because the app holds spliced coding sequence, not exon/genomic maps.
+//      For an insertion or deletion a second Ensembl call fetches the reference bases to the left
+//      of it, so the allele can be left-aligned to the position gnomAD files it under.
 //   2. gnomAD's GraphQL API returns allele counts and frequencies for that coordinate.
 //
 // For a variant the app already has an hg38 coordinate for (Known/whitelist entries), step 1 is
@@ -12,7 +14,10 @@
 // insertions and deletions, not only substitutions. It does that by reading Ensembl's own VCF
 // rendering of the variant rather than reconstructing one — see hgvsToGenomic.
 
+import { leftAlign, needsLeftAlignment, variantId as idOf } from '../core/leftAlign.mjs';
+
 const VEP_HGVS = 'https://rest.ensembl.org/vep/human/hgvs';
+const ENSEMBL_SEQUENCE = 'https://rest.ensembl.org/sequence/region/human';
 const GNOMAD_API = 'https://gnomad.broadinstitute.org/api';
 
 // gnomAD v4 genetic-ancestry group labels.
@@ -22,15 +27,17 @@ const POP_LABELS = {
   sas: 'South Asian', ami: 'Amish', remaining: 'Remaining',
 };
 
-async function getJson(url, opts = {}) {
+async function getResponse(url, opts = {}) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), opts.timeoutMs || 30000);
   try {
     const res = await fetch(url, { ...opts, signal: ctrl.signal });
     if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
-    return await res.json();
+    return res;
   } finally { clearTimeout(timer); }
 }
+const getJson = async (url, opts) => (await getResponse(url, opts)).json();
+const getText = async (url, opts) => (await getResponse(url, opts)).text();
 
 const COMPLEMENT = { A: 'T', C: 'G', G: 'C', T: 'A' };
 
@@ -74,16 +81,19 @@ const printCoordinate = (c) => `${c.chrom}:${c.pos} ${c.ref}>${c.alt}`;
  *  coordinate is read from Ensembl's own VCF rendering (`vcf_string`), which is why insertions and
  *  deletions work: that field carries the anchor base — the one unchanged base written into both
  *  alleles so neither side is empty — and it is already on the plus strand. Asking for it costs one
- *  extra field in the same reply to the same request; nothing further is sent off the machine.
+ *  extra field in the same reply to the same request; nothing further is sent off the machine. A
+ *  5xx or a dropped connection is retried twice — Ensembl's REST service fails intermittently, and
+ *  an unretried failure here loses the whole lookup rather than degrading it.
  *
  *  `placedBy: 'Ensembl'` records where the position came from. It matters for an insertion or
  *  deletion: Ensembl and other services do not always write the same allele at the same position
  *  inside a repeat (checked against VariantValidator — Ensembl puts CFTR p.Phe508del at
- *  7:117559591 TCTT>T, VariantValidator at 7:117559590 ATCT>A; both describe the same edit).
+ *  7:117559591 TCTT>T, VariantValidator at 7:117559590 ATCT>A; both describe the same edit). The
+ *  gnomAD lookup settles that with leftAlignForLookup below.
  */
 export async function hgvsToGenomic(hgvs) {
   const url = `${VEP_HGVS}/${encodeURIComponent(hgvs)}?content-type=application/json&vcf_string=1`;
-  const data = await getJson(url);
+  const data = await retryTransient(() => getJson(url));
   const r = data && data[0];
   if (!r || !r.seq_region_name) throw new Error('Ensembl could not place this variant on the genome');
   if (r.assembly_name && String(r.assembly_name) !== 'GRCh38') {
@@ -100,6 +110,53 @@ export async function hgvsToGenomic(hgvs) {
   const coord = fromVcf || fromAlleles;
   if (!coord) throw new Error('Ensembl returned no usable genomic coordinate for this variant');
   return { ...coord, placedBy: 'Ensembl' };
+}
+
+/** Plus-strand GRCh38 reference bases for chrom:lo-hi (1-based, inclusive), from Ensembl.
+ *  Ensembl's REST service answers 5xx and times out on and off; a server-side failure is retried
+ *  twice before the window is given up, because giving up turns a findable allele into "absence not
+ *  established". The browsers name a failed request differently from Node, so all four wordings are
+ *  matched — the website runs this same code. */
+const TRANSIENT = /HTTP 5\d\d|abort|fetch failed|failed to fetch|networkerror|load failed/i;
+const RETRY_WAITS_MS = [500, 1000];
+async function retryTransient(call) {
+  for (let attempt = 0; ; attempt += 1) {
+    try { return await call(); }
+    catch (e) {
+      if (!TRANSIENT.test(e.message) || attempt >= RETRY_WAITS_MS.length) throw e;
+      await new Promise((r) => setTimeout(r, RETRY_WAITS_MS[attempt]));
+    }
+  }
+}
+async function referenceWindow(chrom, lo, hi) {
+  const url = `${ENSEMBL_SEQUENCE}/${chrom}:${lo}..${hi}?content-type=text/plain;coord_system_version=GRCh38`;
+  const seq = await retryTransient(async () => String(await getText(url)).trim().toUpperCase());
+  if (!/^[ACGTN]+$/.test(seq) || seq.length !== hi - lo + 1) {
+    throw new Error(`Ensembl returned ${seq.length} bases for ${chrom}:${lo}-${hi}, expected ${hi - lo + 1}`);
+  }
+  return { start: lo, seq };
+}
+
+// How far left of the variant to read. A polyglutamine tract is tens of bases and a long
+// microsatellite hundreds; the window widens twice before the walk is abandoned.
+const WINDOW_WIDTHS = [300, 3000, 30000];
+
+/** Move an insertion or deletion to its left-most position (see core/leftAlign.mjs). A one-base
+ *  substitution is returned as it came, with no request made. Throws when the walk cannot be
+ *  completed — the caller decides what an unaligned allele means for its answer. */
+export async function leftAlignForLookup(coord) {
+  const chrom = String(coord.chrom ?? coord.chr).replace(/^chr/i, '');
+  const c = { chrom, pos: Number(coord.pos), ref: String(coord.ref || '').toUpperCase(), alt: String(coord.alt || '').toUpperCase() };
+  if (!needsLeftAlignment(c.ref, c.alt)) return leftAlign(c, null);
+  let last = null;
+  for (const width of WINDOW_WIDTHS) {
+    const lo = Math.max(1, c.pos - width);
+    const window = await referenceWindow(chrom, lo, c.pos + c.ref.length);
+    last = leftAlign(c, window);
+    if (last.ok) return last;
+    if (last.code !== 'window' || lo === 1) break;
+  }
+  throw new Error(last && last.reason ? last.reason : 'left-alignment failed');
 }
 
 /** Query gnomAD for a genomic coordinate. Returns null if the variant is not in gnomAD. */
@@ -160,24 +217,63 @@ async function queryGnomad(chrom, pos, ref, alt, dataset = 'gnomad_r4') {
   };
 }
 
-/** Full lookup from a coding HGVS (optionally with a known hg38 coordinate to skip VEP). */
+/** Full lookup from a coding HGVS (optionally with a known hg38 coordinate to skip VEP).
+ *
+ *  gnomAD files an insertion or deletion at one position only — the left-most, the VCF convention —
+ *  and Ensembl writes the same allele at the 3′-most one, as HGVS does. Checked against the live
+ *  services on 2026-08-28: gnomAD holds SMARCA2 c.705_707dup as 9-2039776-A-ACAG (about 1 in 30
+ *  people carry it) and answers "Variant not found" for Ensembl's 9-2039814-A-AGCA; CFTR
+ *  p.Phe508del and ASXL1 c.1934dup fail the same way. So the allele is left-aligned before it is
+ *  queried, and the answer carries both spellings: `coord` is the coordinate as placed, `queried`
+ *  the one gnomAD was asked about, `leftAligned` {from, to} when the two differ.
+ */
 export async function gnomadLookup(hgvs, knownCoord) {
   let coord = knownCoord;
   if (!coord) coord = await hgvsToGenomic(hgvs);
-  const result = await queryGnomad(coord.chrom, coord.pos, coord.ref, coord.alt);
+  const asPlaced = {
+    chrom: String(coord.chrom ?? coord.chr).replace(/^chr/i, ''),
+    pos: Number(coord.pos),
+    ref: String(coord.ref || '').toUpperCase(),
+    alt: String(coord.alt || '').toUpperCase(),
+  };
 
-  // gnomAD stores an insertion or deletion at one fixed position, and Ensembl does not always
-  // choose the same one for the same edit. Checked against the live services: gnomAD holds CFTR
-  // p.Phe508del as 7-117559590-ATCT-A and returns "Variant not found" for Ensembl's own rendering
-  // of the same allele, 7-117559591-TCTT-T. So when the position came from Ensembl and the change
-  // is not a single base, "not found here" is all that has been established — absence from gnomAD
-  // has not been. A curated coordinate the app already held is not affected.
-  const singleBase = String(coord.ref || '').length === 1 && String(coord.alt || '').length === 1;
-  if (result.notInGnomad && !singleBase && coord.placedBy === 'Ensembl') {
-    result.absenceUnconfirmed = true;
-    result.absenceNote = 'Not found at the position Ensembl gave. Ensembl and gnomAD do not always '
-      + 'write an insertion or deletion at the same position, so this is not evidence that the '
-      + 'variant is absent from gnomAD.';
+  let queried = asPlaced;
+  let leftAligned = null;
+  let alignmentError = null;
+  if (needsLeftAlignment(asPlaced.ref, asPlaced.alt)) {
+    try {
+      const a = await leftAlignForLookup(asPlaced);
+      queried = { chrom: a.chrom, pos: a.pos, ref: a.ref, alt: a.alt };
+      if (a.moved) leftAligned = { from: idOf(asPlaced), to: idOf(queried) };
+    } catch (e) { alignmentError = e.message; }
   }
-  return { ...result, coord, hgvs };
+
+  // The position is worked out before gnomAD is asked, and the ClinVar card is keyed on it, so a
+  // gnomAD outage must not take the position down with it: the failure is returned beside `queried`
+  // rather than thrown.
+  let result;
+  try {
+    result = await queryGnomad(queried.chrom, queried.pos, queried.ref, queried.alt);
+  } catch (e) {
+    return { unavailable: true, error: e.message, provisional: true, coord, queried, leftAligned, hgvs };
+  }
+
+  // A miss is a finding only when the allele was asked about in the form gnomAD keys on. When the
+  // walk to that form failed, or the change swaps one run of bases for another (gnomAD's variant
+  // table holds only single-base substitutions and anchored insertions and deletions, never a
+  // multi-base substitution or deletion-insertion), "not found here" is all that has been
+  // established.
+  if (result.notInGnomad) {
+    const multiBase = queried.ref.length > 1 && queried.alt.length > 1;
+    if (alignmentError) {
+      result.absenceUnconfirmed = true;
+      result.absenceNote = `Not found as ${result.variantId}. Left-alignment failed: ${alignmentError}. Absence not established.`;
+    } else if (multiBase) {
+      result.absenceUnconfirmed = true;
+      result.absenceNote = `Not found as ${result.variantId}. gnomAD does not file a change of one run of bases for another as a single record. Absence not established.`;
+    }
+  }
+  // A provisional answer is one the position could not be settled for: it must not be cached, and it
+  // must not be read as a finding about the variant.
+  return { ...result, coord, queried, leftAligned, hgvs, provisional: !!alignmentError, alignmentError };
 }

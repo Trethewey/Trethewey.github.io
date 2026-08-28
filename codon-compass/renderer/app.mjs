@@ -1738,12 +1738,14 @@ async function clinvarSubmissionRequest(variationId) {
 
 // A ClinVar card fed from NCBI (not GeneBe): the germline / somatic-oncogenicity /
 // somatic-clinical-impact split, each with review stars, and a lazy per-submission table.
-function buildClinvarCard(coord, gene) {
+function buildClinvarCard(coord, gene, searchNote) {
   const body = el('div', {}, el('div', { class: 'note' }, 'Loading ClinVar…'));
   const card = el('div', { class: 'card ve-card ve-clinvar' }, el('h2', { class: 've-title' }, 'ClinVar'), body);
   (async () => {
     const res = await clinvarRequest(coord, gene);
     body.innerHTML = '';
+    // Which position was searched, when it is not the one on the identity line above.
+    if (searchNote) body.append(el('div', { class: 'note muted', style: 'font-size:11.5px; margin-bottom:6px' }, searchNote));
     if (!res || !res.ok) { body.append(el('div', { class: 'note warn' }, `ClinVar unavailable: ${(res && res.error) || 'no response'}.`)); return; }
     if (res.notFound) { body.append(el('div', { class: 'note' }, 'This allele is not in ClinVar.')); return; }
     // Which record these classifications belong to. A record is accepted either because its own
@@ -1951,8 +1953,14 @@ async function pullAssessment(hgvs) {
   if (!coord || !coord.chr) {
     try { gPre = await window.api.gnomad(hgvs, null); } catch (e) { gPre = { ok: false, error: e.message }; }
     if (assessState.hgvs !== hgvs) return;
-    const m = gPre && gPre.variantId && /^(\w+)-(\d+)-([A-Za-z]+)-([A-Za-z]+)$/.exec(String(gPre.variantId));
-    if (m) coord = { chr: m[1], chrom: m[1], pos: Number(m[2]), ref: m[3].toUpperCase(), alt: m[4].toUpperCase() };
+    // The gnomAD lookup's own placement, not its `variantId` — that is the LEFT-ALIGNED spelling,
+    // and writing it into lastVariant.coord gave the Splice tab and the identity line a different
+    // position for the same variant depending on which tab was opened first. The left-aligned
+    // spelling belongs to the gnomAD and ClinVar lookups only, and travels in `queried`.
+    if (gPre && gPre.coord && gPre.coord.pos) {
+      const p = gPre.coord;
+      coord = { chr: p.chrom || p.chr, chrom: p.chrom || p.chr, pos: Number(p.pos), ref: p.ref, alt: p.alt };
+    }
   }
   if (!coord || !coord.chr) { assessState = { status: 'error', hgvs, error: `Could not map ${hgvs} to a genomic coordinate — Ensembl VEP is not responding (it is frequently flaky). Reassess in a moment.` }; renderAssessment(); return; }
   if (lastVariant && lastVariant.hgvs === hgvs) lastVariant.coord = coord;
@@ -2010,13 +2018,23 @@ function renderAssessmentData(box, d) {
 
   // Clinical — ClinVar directly from NCBI: germline / somatic-oncogenicity / somatic-clinical-impact,
   // allele-exact, with review stars, the per-submission table and the exact variation link.
-  const clinicalCard = buildClinvarCard(c, gene);
-
-
-  // Population — gnomAD
+  // For an insertion or deletion the gnomAD lookup left-aligns the allele to the position gnomAD and
+  // ClinVar's search index file it under (core/leftAlign.mjs), and ClinVar must be searched there
+  // too: at Ensembl's 3′ position the SMARCA2 c.705_707dup record (c.669GCA[14]) is not among the
+  // candidates at all, while the allele match itself is exact either way. The position survives a
+  // failed gnomAD query, which is why `queried` is read rather than the frequency answer.
   const g = d.gnomad || {};
+  const cvCoord = g.queried && g.queried.pos
+    ? { chr: g.queried.chrom, chrom: g.queried.chrom, pos: g.queried.pos, ref: g.queried.ref, alt: g.queried.alt }
+    : c;
+  const clinicalCard = buildClinvarCard(cvCoord, gene, clinvarSearchNote(g, cvCoord));
+
+  // Population — gnomAD. A miss the lookup could not confirm (the left-alignment walk failed, or the
+  // change swaps one run of bases for another) carries its own note and is never printed as absence.
   let popBody;
-  if (g.notInGnomad) popBody = el('div', { class: 'note' }, 'Not observed in gnomAD v4 — consistent with a somatic or very rare variant.');
+  if (g.unavailable) popBody = el('div', { class: 'note warn' }, `gnomAD unavailable: ${g.error}.`);
+  else if (g.notInGnomad && g.absenceUnconfirmed) popBody = el('div', { class: 'note warn' }, g.absenceNote);
+  else if (g.notInGnomad) popBody = el('div', { class: 'note' }, `Not observed in gnomAD v4 as ${g.variantId || c.chr + '-' + c.pos + '-' + c.ref + '-' + c.alt} — consistent with a somatic or very rare variant.`);
   else if (g.ok && g.overall) {
     // The same three tiles the gnomAD tab shows, so the two places agree in both figures and wording.
     const o = g.overall;
@@ -2028,6 +2046,7 @@ function renderAssessmentData(box, d) {
   }
   else popBody = el('div', { class: 'note warn' }, `gnomAD unavailable${g.error ? `: ${g.error}` : ''}.`);
   const popCard = el('div', { class: 'card ve-card ve-gnomad' }, el('h2', { class: 've-title' }, 'Population frequency (gnomAD v4)'), popBody,
+    leftAlignedLine(g),
     gnomadLink(g) ? el('div', { class: 've-cap' }, gnomadLink(g)) : null);
 
   // Somatic — Genome Nexus (Cancer Hotspots + COSMIC colocated + Mutation Assessor)
@@ -3096,18 +3115,55 @@ function gnomadLink(res) {
   return a;
 }
 
+// Which position the ClinVar card was searched at, when that is not the one on the identity line.
+// An allele that could not be left-aligned is searched where it was placed, and ClinVar files an
+// insertion or deletion at the left-most position — so "not in ClinVar" from there is not a finding
+// about the allele, and the card must say so rather than report an absence it has not established.
+function clinvarSearchNote(g, cvCoord) {
+  if (g && g.leftAligned) return `Searched at the left-aligned position ${g.leftAligned.to} (placed as ${g.leftAligned.from}).`;
+  if (g && g.alignmentError) {
+    return `Searched at ${cvCoord.chr}-${cvCoord.pos}-${cvCoord.ref}-${cvCoord.alt}, where the variant was placed. `
+      + `Left-alignment failed: ${g.alignmentError}. ClinVar files an insertion or deletion at its left-most position.`;
+  }
+  return null;
+}
+
+// Both spellings of an insertion or deletion, when the lookup moved it to the position gnomAD files
+// it under (core/leftAlign.mjs). Nothing for a substitution or an allele that was already there.
+function leftAlignedLine(res) {
+  if (!res || !res.leftAligned) return null;
+  return el('div', { class: 'note muted', style: 'font-size:11.5px; margin-top:6px' },
+    `Left-aligned for lookup: ${res.leftAligned.from} → ${res.leftAligned.to}.`);
+}
+
 function renderGnomadResult(host, hgvs, res) {
   host.innerHTML = '';
+  if (res && res.ok && res.unavailable) {
+    host.append(el('div', { class: 'card' },
+      el('div', { class: 'note warn' }, `gnomAD lookup unavailable: ${res.error}.`),
+      leftAlignedLine(res)));
+    return;
+  }
   if (!res || !res.ok) {
     host.append(el('div', { class: 'card' },
       el('div', { class: 'note warn' }, `gnomAD lookup unavailable: ${(res && res.error) || 'no response'}.`),
       el('div', { class: 'note muted', style: 'margin-top:6px; font-size:11.5px' }, 'This feature needs the internet; a locked-down network may block it.')));
     return;
   }
+  // A miss the lookup could not confirm — the left-alignment walk failed, or the change is several
+  // adjacent bases, which gnomAD lists one base at a time — is reported as exactly that.
+  if (res.notInGnomad && res.absenceUnconfirmed) {
+    host.append(el('div', { class: 'card' },
+      el('h2', { style: 'margin:0 0 6px' }, 'Not found in gnomAD at this position'),
+      el('div', { class: 'note warn' }, res.absenceNote),
+      gnomadLink(res) ? el('div', { style: 'margin-top:8px' }, gnomadLink(res)) : null));
+    return;
+  }
   if (res.notInGnomad) {
     host.append(el('div', { class: 'card' },
       el('h2', { style: 'margin:0 0 6px' }, 'Not observed in gnomAD'),
       el('div', { class: 'note' }, `${res.variantId || hgvs} is absent from gnomAD v4 — consistent with a somatic or very rare variant.`),
+      leftAlignedLine(res),
       gnomadLink(res) ? el('div', { style: 'margin-top:8px' }, gnomadLink(res)) : null));
     return;
   }
@@ -3129,6 +3185,7 @@ function renderGnomadResult(host, hgvs, res) {
     el('div', { class: 'row', style: 'justify-content:space-between; align-items:baseline; gap:12px' },
       el('h2', { style: 'margin:0' }, res.variantId || hgvs),
       res.rsids && res.rsids.length ? el('div', { class: 'sub' }, res.rsids.join(', ')) : null),
+    leftAlignedLine(res),
     el('div', { class: 'row', style: 'gap:12px; flex-wrap:wrap; margin-top:12px' },
       tile('Overall frequency (WES + WGS)', pctFmt(o.af), afReading(o.af)),
       tile('Frequency as a ratio (AN ÷ AC)', oneInN(o.ac, o.an), `${o.ac == null ? '—' : o.ac.toLocaleString()} in ${o.an == null ? '—' : o.an.toLocaleString()} alleles`),
@@ -3389,6 +3446,7 @@ export const __testing = {
   buildFusions,
   buildStructureCard,
   buildClinvarCard,
+  renderGnomadResult,
   drawBoard,
   verdictClass,
   numberingFrame,
